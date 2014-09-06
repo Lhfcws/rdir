@@ -1,9 +1,11 @@
 #!/usr/bin/python
 # coding: utf-8
-from scripts import rdir
+from rdir.rdir import rdir
 
 __author__ = 'lhfcws'
 
-import modulegraph
+import urllib2
 
-rdir(modulegraph.__name__)
+name = urllib2.__name__
+
+rdir(name)

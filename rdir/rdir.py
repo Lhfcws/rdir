@@ -4,7 +4,7 @@ __author__ = 'lhfcws'
 
 import copy
 
-from scripts.colorama import Style
+from colorama.ansi import Style, Fore
 
 
 class _TempModule(object):
@@ -29,7 +29,7 @@ def _blank_prefix(num):
 
 def _get_doc(name, prefix):
     doc = eval(name + ".__doc__", _temp_module.modules)
-    if doc is None:
+    if doc is None or type(doc) != type(str()):
         doc = ""
     else:
         doc = doc.replace("\n", "\n" + prefix)
@@ -62,7 +62,7 @@ def _recursive_dir_with_doc(deep, mod_name, parents, limit_deep):
 
     full_name = _get_full_name(p)
 
-    output = line_prefix + mod_name + _get_type(full_name) + " :\n" + blank_prefix + _get_doc(full_name, blank_prefix)
+    output = line_prefix + _prompt(Fore.CYAN, mod_name) + _prompt(Fore.BLUE, _get_type(full_name)) + " :\n" + blank_prefix + _get_doc(full_name, blank_prefix)
     print output
 
     if limit_deep != -1 and deep == limit_deep:
@@ -74,8 +74,7 @@ def _recursive_dir_with_doc(deep, mod_name, parents, limit_deep):
 
 
 def _prompt(color, string):
-    prompt = color + Style.BRIGHT + '==> ' + Style.RESET_ALL
-    prompt += Style.BRIGHT + string + Style.RESET_ALL
+    prompt = color + Style.BRIGHT + string + Style.RESET_ALL
     return prompt
 
 

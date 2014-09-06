@@ -10,6 +10,6 @@ setup(
       author="Lhfcws Wu",
       url="http://www.github.com/Lhfcws/rdir",
       license="LGPL",
-      packages= find_packages(),
-      scripts=["scripts/rdir.py"],
+      packages= ["rdir", "rdir/colorama"],
+      scripts=["rdir/*"],
       )
