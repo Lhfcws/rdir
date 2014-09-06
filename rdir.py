@@ -3,6 +3,7 @@
 __author__ = 'lhfcws'
 
 import copy
+from colorama import Fore, Style
 
 
 class _TempModule(object):
@@ -40,7 +41,7 @@ def _dir(name):
 
 def _get_children(name):
     ls = eval(_dir(name), _temp_module.modules)
-    res = filter(lambda child: not child.startswith("_"), ls)
+    res = filter(lambda child: not child.startswith("__"), ls)
     return res
 
 
@@ -71,15 +72,33 @@ def _recursive_dir_with_doc(deep, mod_name, parents, limit_deep):
         _recursive_dir_with_doc(deep + 1, child, p, limit_deep)
 
 
+def _display_prompt(color, string):
+    prompt = color + Style.BRIGHT + '==> ' + Style.RESET_ALL
+    prompt += Style.BRIGHT + string + Style.RESET_ALL
+    print prompt
+
+
 def rdir(module, limit_deep=3):
+    """Recursively show module's doc and structure.
+
+    This method will ignore built-in arttribute which start with "__".
+
+    Args:
+        module: string type, module.__name__ like "sys" or "pyquery"
+        limit_deep: int type, search deep limit, default is 3. -1 for unlimited.
+
+    Returns:
+        void.
+        The content will be print to terminal.
+
+    """
     assert module is not None and module is not False
     assert type(module) == type(str())
-    print "Parsing module: " + module
+    print "[rdir] Analyzing module: " + module
 
     _temp_module.import_module(module)
     deep = 0
 
-    if type(module) == type(str()):
-        _recursive_dir_with_doc(deep, module, [], limit_deep)
-    else:
-        raise Exception("Invalid param `module`, it should be a string or a module.")
+    _recursive_dir_with_doc(deep, module, [], limit_deep)
+
+    # TODO(lhfcws) return a well-defined structure containing the result.

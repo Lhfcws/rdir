@@ -6,7 +6,5 @@ Refer to `test.py` for example.
 
 
 > TODO:
-> 1. Add setup.py
-> 2. Add docs
-> 3. pretty print
+> 1. pretty print
 
