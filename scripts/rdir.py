@@ -73,10 +73,10 @@ def _recursive_dir_with_doc(deep, mod_name, parents, limit_deep):
         _recursive_dir_with_doc(deep + 1, child, p, limit_deep)
 
 
-def _display_prompt(color, string):
+def _prompt(color, string):
     prompt = color + Style.BRIGHT + '==> ' + Style.RESET_ALL
     prompt += Style.BRIGHT + string + Style.RESET_ALL
-    print prompt
+    return prompt
 
 
 def rdir(module, limit_deep=3):

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # coding: utf-8
-from rdir import rdir
+from scripts import rdir
 
 __author__ = 'lhfcws'
 
