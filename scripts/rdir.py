@@ -3,7 +3,8 @@
 __author__ = 'lhfcws'
 
 import copy
-from colorama import Fore, Style
+
+from scripts.colorama import Style
 
 
 class _TempModule(object):

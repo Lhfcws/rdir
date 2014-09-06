@@ -11,5 +11,5 @@ setup(
       url="http://www.github.com/Lhfcws/rdir",
       license="LGPL",
       packages= find_packages(),
-      scripts=["rdir.py"],
+      scripts=["scripts/rdir.py"],
       )
