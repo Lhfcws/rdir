@@ -3,11 +3,13 @@
 __author__ = 'lhfcws'
 
 from setuptools import setup
+
 setup(
       name="rdir",
       version="0.10",
       description="Recursively show modules' doc and structure",
       author="Lhfcws Wu",
+      author_email="lhfcws@gmail.com",
       url="http://www.github.com/Lhfcws/rdir",
       license="MIT",
       packages= ["rdir", "rdir/colorama"],
