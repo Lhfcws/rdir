@@ -1,10 +1,12 @@
 #!/usr/bin/python
 # coding: utf-8
+"""Recursively show modules' doc and structure
+"""
 __author__ = 'lhfcws'
 
-import copy
+import copy as _copy
 
-from colorama.ansi import Style, Fore
+from colorama.ansi import Style as _Style, Fore as _Fore
 
 
 class _TempModule(object):
@@ -57,12 +59,12 @@ def _get_type(name):
 def _recursive_dir_with_doc(deep, mod_name, parents, limit_deep):
     line_prefix = _line_prefix(deep) + " "
     blank_prefix = _blank_prefix(deep) + " "
-    p = copy.deepcopy(parents)
+    p = _copy.deepcopy(parents)
     p.append(mod_name)
 
     full_name = _get_full_name(p)
 
-    output = line_prefix + _prompt(Fore.CYAN, mod_name) + _prompt(Fore.BLUE, _get_type(full_name)) + " :\n" + blank_prefix + _get_doc(full_name, blank_prefix)
+    output = line_prefix + _prompt(_Fore.CYAN, mod_name) + _prompt(_Fore.BLUE, _get_type(full_name)) + " :\n" + blank_prefix + _get_doc(full_name, blank_prefix)
     print output
 
     if limit_deep != -1 and deep == limit_deep:
@@ -74,7 +76,7 @@ def _recursive_dir_with_doc(deep, mod_name, parents, limit_deep):
 
 
 def _prompt(color, string):
-    prompt = color + Style.BRIGHT + string + Style.RESET_ALL
+    prompt = color + _Style.BRIGHT + string + _Style.RESET_ALL
     return prompt
 
 
