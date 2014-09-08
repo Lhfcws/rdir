@@ -9,7 +9,7 @@ setup(
       description="Recursively show modules' doc and structure",
       author="Lhfcws Wu",
       url="http://www.github.com/Lhfcws/rdir",
-      license="LGPL",
+      license="MIT",
       packages= ["rdir", "rdir/colorama"],
       scripts=["rdir/rdir.py"],
       )
