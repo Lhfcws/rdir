@@ -32,6 +32,6 @@ rdir save the module's doc and structure as a dict (tree-structure), so HTML gen
 
 ### Other requirments
 
-> Code style: Google style
-> Code model: OOP
-> Write some annotations if necessary, at least those of a class or a module.
+> Code style: Google style  
+> Code model: OOP  
+> Write some annotations if necessary, at least those of a class or a module.  
