@@ -8,4 +8,4 @@ import urllib2
 
 name = urllib2.__name__
 
-rdir(name)
+rdir(name, 1)

@@ -6,7 +6,7 @@ from setuptools import setup
 
 setup(
       name="rdir",
-      version="0.10",
+      version="0.20",
       description="Recursively show modules' doc and structure",
       author="Lhfcws Wu",
       author_email="lhfcws@gmail.com",

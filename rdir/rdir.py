@@ -44,7 +44,7 @@ def _dir(name):
 
 def _get_children(name):
     ls = eval(_dir(name), _temp_module.modules)
-    res = filter(lambda child: not child.startswith("__"), ls)
+    res = filter(lambda child: not child.startswith("_"), ls)
     return res
 
 
@@ -64,7 +64,8 @@ def _recursive_dir_with_doc(deep, mod_name, parents, limit_deep):
 
     full_name = _get_full_name(p)
 
-    output = line_prefix + _prompt(_Fore.CYAN, mod_name) + _prompt(_Fore.BLUE, _get_type(full_name)) + " :\n" + blank_prefix + _get_doc(full_name, blank_prefix)
+    output = line_prefix + _prompt(_Fore.CYAN, mod_name) + _prompt(_Fore.BLUE, _get_type(full_name)) \
+             + " :\n" + blank_prefix + _get_doc(full_name, blank_prefix)
     print output
 
     if limit_deep != -1 and deep == limit_deep:
@@ -80,10 +81,11 @@ def _prompt(color, string):
     return prompt
 
 
-def rdir(module, limit_deep=3):
+def rdir(module, limit_deep=2):
     """Recursively show module's doc and structure.
+    TODO: More friendly way of presentation is coming soon.
 
-    This method will ignore built-in arttribute which start with "__".
+    This method will ignore built-in arttribute which start with "_".
 
     Args:
         module: string type, module.__name__ like "sys" or "pyquery"
