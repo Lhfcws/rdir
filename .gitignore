@@ -1,3 +1,6 @@
 *.egg-info
 build
 *.pyc
+.idea
+*.iml
+*.bak
