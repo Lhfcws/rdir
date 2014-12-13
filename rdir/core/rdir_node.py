@@ -8,19 +8,19 @@ class RDirNode(object):
     This is a immutable class.
     """
 
-    def __init__(self, name, doc, obj_type, children):
+    def __init__(self, fullname, doc, obj_type, children):
         """ Init
-        :param name: object name
+        :param name: object full name like "urllib2.opener"
         :param doc: object document
         :param obj_type: object type
         :param children: object's sub-objects
         """
-        assert isinstance(name, type(""))
+        assert isinstance(fullname, type(""))
         assert isinstance(children, type({}))
 
-        self.name = name
+        self.name = fullname
         self.doc = doc
-        if type(obj_type) == type(""):
+        if isinstance(obj_type, type("")):
             self.type = obj_type
         else:
             self.type = str(obj_type)
@@ -46,3 +46,9 @@ class RDirNode(object):
         """
         assert isinstance(key, type(""))
         return self.children[key]
+
+    def get_name(self):
+        """ Get the object's own name.
+        :return: str var name
+        """
+        return self.name.split(".")[-1]
