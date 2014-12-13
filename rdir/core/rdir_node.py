@@ -10,15 +10,13 @@ class RDirNode(object):
 
     def __init__(self, name, doc, obj_type, children):
         """ Init
-        Assertion is annotated to reduce the cost, as the many nodes may be created.
-        But developer should be aware of the type of the args
         :param name: object name
         :param doc: object document
         :param obj_type: object type
         :param children: object's sub-objects
         """
-        # assert type(self.name) == type("")
-        # assert type(children) == type({})
+        assert isinstance(name, type(""))
+        assert isinstance(children, type({}))
 
         self.name = name
         self.doc = doc
@@ -46,4 +44,5 @@ class RDirNode(object):
         :param key: str sub-object's name
         :return: RDirNode node of the sub-object
         """
+        assert isinstance(key, type(""))
         return self.children[key]
