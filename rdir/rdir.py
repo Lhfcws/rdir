@@ -4,105 +4,58 @@
 """
 __author__ = 'lhfcws'
 
-import copy as _copy
+import os
+from core.rdir_core import RDirHandler
 
-from colorama.ansi import Style as _Style, Fore as _Fore
+# Constants
+TERM = 0
+JAVADOC = 1
+TREE = 2
+RETURN = 4
 
-
-class _TempModule(object):
-    def __init__(self):
-        self.modules = {}
-
-    def import_module(self, module_name):
-        mod = __import__(module_name)
-        self.modules[module_name] = mod
-
-
-_temp_module = _TempModule()
-
-
-def _line_prefix(num):
-    return "-" * num
-
-
-def _blank_prefix(num):
-    return " " * num
-
-
-def _get_doc(name, prefix):
-    doc = eval(name + ".__doc__", _temp_module.modules)
-    if doc is None or type(doc) != type(str()):
-        doc = ""
-    else:
-        doc = doc.replace("\n", "\n" + prefix)
-    return doc
-
-
-def _dir(name):
-    return "dir(" + name + ")"
-
-
-def _get_children(name):
-    ls = eval(_dir(name), _temp_module.modules)
-    res = filter(lambda child: not child.startswith("_"), ls)
-    return res
-
-
-def _get_full_name(paths):
-    return ".".join(paths)
-
-
-def _get_type(name):
-    return " (" + str(eval("type(" + name + ")", _temp_module.modules)) + ")"
-
-
-def _recursive_dir_with_doc(deep, mod_name, parents, limit_deep):
-    line_prefix = _line_prefix(deep) + " "
-    blank_prefix = _blank_prefix(deep) + " "
-    p = _copy.deepcopy(parents)
-    p.append(mod_name)
-
-    full_name = _get_full_name(p)
-
-    output = line_prefix + _prompt(_Fore.CYAN, mod_name) + _prompt(_Fore.BLUE, _get_type(full_name)) \
-             + " :\n" + blank_prefix + _get_doc(full_name, blank_prefix)
-    print output
-
-    if limit_deep != -1 and deep == limit_deep:
-        return
-
-    children = _get_children(full_name)
-    for child in children:
-        _recursive_dir_with_doc(deep + 1, child, p, limit_deep)
-
-
-def _prompt(color, string):
-    prompt = color + _Style.BRIGHT + string + _Style.RESET_ALL
-    return prompt
-
-
-def rdir(module, limit_deep=2):
+def rdir(module, obj_full_name=None, limit_deep=2, print_mode=TERM):
     """Recursively show module's doc and structure.
-    TODO: More friendly way of presentation is coming soon.
 
-    This method will ignore built-in arttribute which start with "_".
+    This method will ignore protected or private members which start with "_".
 
     Args:
         module: string type, module.__name__ like "sys" or "pyquery"
-        limit_deep: int type, search deep limit, default is 3. -1 for unlimited.
-
+                or now you can pass the module directly.
+        obj_full_name: None if you want to see the whole module,
+                or string type, full name invocation like "pyquery.PyQuery.eq"
+        limit_deep: int type, search deep limit, default is 2. -1 for unlimited.
+        print_mode:
+                TERM: it'll print out to your terminal;
+                JAVADOC: it'll generate a Javadoc-style webpages;
+                TREE: it'll generate a single webpage with tree structure to show the module;
+                RETURN: it'll return an internal class RDirNode (not suggested).
     Returns:
-        void.
-        The content will be print to terminal.
-
+        RETURN mode: Return a root node of RDirNode.
+        Others: nothing return.
     """
     assert module is not None and module is not False
-    assert type(module) == type(str())
+    assert obj_full_name is None or isinstance(obj_full_name, type(""))
     print "[rdir] Analyzing module: " + module
 
-    _temp_module.import_module(module)
-    deep = 0
+    mod_name = module
+    if isinstance(module, type(os)):
+        mod_name = module.__name__
 
-    _recursive_dir_with_doc(deep, module, [], limit_deep)
+    handler = RDirHandler()
+    handler.import_module(mod_name)
 
-    # TODO(lhfcws) return a well-defined structure containing the result.
+    name = mod_name
+    parents = []
+    if obj_full_name is not None:
+        name = obj_full_name
+        parents = handler
+
+    if print_mode == TERM:
+        handler.recursive_dir_print(deep=0, name, parents, limit_deep)
+    elif print_mode == RETURN:
+        return handler.recursive_dir_return(deep=0, name, parents, limit_deep)
+    elif print_mode == JAVADOC:
+        pass
+    elif print_mode == TREE:
+        pass
+
