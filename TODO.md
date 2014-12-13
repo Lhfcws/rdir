@@ -23,6 +23,11 @@
 
 rdir save the module's doc and structure as a dict (tree-structure), so HTML generator may need to parse the dict.
 
+key: name of object, i.e. "urllib2"
+value: RdirNode
+
+
+
 ### Templates
 
 > Both Javadoc-style and tree-style are needed to be done, but we may release a version first with any one of them is finished. 

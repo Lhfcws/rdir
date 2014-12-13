@@ -1,0 +1,49 @@
+#!/usr/bin/python
+# coding: utf-8
+__author__ = 'lhfcws'
+
+
+class RDirNode(object):
+    """ Node of rdir dict.
+    This is a immutable class.
+    """
+
+    def __init__(self, name, doc, obj_type, children):
+        """ Init
+        Assertion is annotated to reduce the cost, as the many nodes may be created.
+        But developer should be aware of the type of the args
+        :param name: object name
+        :param doc: object document
+        :param obj_type: object type
+        :param children: object's sub-objects
+        """
+        # assert type(self.name) == type("")
+        # assert type(children) == type({})
+
+        self.name = name
+        self.doc = doc
+        if type(obj_type) == type(""):
+            self.type = obj_type
+        else:
+            self.type = str(obj_type)
+
+        self.children = children
+
+    def count_children(self):
+        """ Size of the children.
+        :return: int size of the children
+        """
+        return len(self.children)
+
+    def list_children(self):
+        """ List the keys of self.children
+        :return: list [sub-object's name]
+        """
+        return self.children.keys
+
+    def get_children(self, key):
+        """ Get a child node by a given key
+        :param key: str sub-object's name
+        :return: RDirNode node of the sub-object
+        """
+        return self.children[key]
