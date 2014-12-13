@@ -6,12 +6,13 @@ from setuptools import setup
 
 setup(
       name="rdir",
-      version="0.20",
-      description="Recursively show modules' doc and structure",
+      version="0.30-alpha",
+      description="Recursively show docs and structure of any object in the give module.",
       author="Lhfcws Wu",
       author_email="lhfcws@gmail.com",
       url="http://www.github.com/Lhfcws/rdir",
       license="MIT",
-      packages= ["rdir", "rdir/colorama"],
+      packages= ["rdir"],
       scripts=["rdir/rdir.py"],
-      )
+      requires=['colorama']
+)

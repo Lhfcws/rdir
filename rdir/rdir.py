@@ -14,7 +14,7 @@ TREE = 2
 RETURN = 4
 
 def rdir(module, obj_full_name=None, limit_deep=2, print_mode=TERM):
-    """Recursively show module's doc and structure.
+    """Recursively show docs and structure of any object in the give module.
 
     This method will ignore protected or private members which start with "_".
 
