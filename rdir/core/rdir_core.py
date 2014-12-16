@@ -75,6 +75,11 @@ class RDirHandler(object):
     def _get_type(self, name):
         return " (%s)" % (str(eval("type(%s)" % name, self.context.modules)))
 
+    def parse_obj_name(self, name):
+        names = name.split(".")
+        self.context.import_module(names[0])
+        return names[-1], names[:-1]
+
     def import_module(self, mod_name):
         self.context.import_module(mod_name)
 
