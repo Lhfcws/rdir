@@ -8,11 +8,8 @@
 
 __author__ = 'laiy'
 
-from pyh import *
-import copy
-
 class HTML_generator:
-    def generate_HTML(self, deep, obj_name, parents, limit_deep):
+    def generate_HTML(self, rdir_node):
         ''' Generate a local HTML file to make presentation more user-friendly 
         Separate two recursive methods to reduce the performance cost
         :param deep: int current
@@ -20,9 +17,4 @@ class HTML_generator:
         :param parents: list the parent chain in order
         :param limit_deep: int limit deep
         '''
-        p = copy.deepcopy(parents)
-        p.append(obj_name)
-
-        full_name = self.get_full_name(p)
-
 
