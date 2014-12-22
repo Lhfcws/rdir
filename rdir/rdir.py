@@ -51,9 +51,9 @@ def rdir(module, obj_full_name=None, limit_deep=2, print_mode=TERM):
         parents = handler
 
     if print_mode == TERM:
-        handler.recursive_dir_print(deep=0, name, parents, limit_deep)
+        handler.recursive_dir_print(0, name, parents, limit_deep)
     elif print_mode == RETURN:
-        return handler.recursive_dir_return(deep=0, name, parents, limit_deep)
+        return handler.recursive_dir_return(0, name, parents, limit_deep)
     elif print_mode == JAVADOC:
         pass
     elif print_mode == TREE:
