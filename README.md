@@ -13,7 +13,7 @@ Refer to `test.py` for example.
 
 **Usage:**  
  
-    rdir.rdir(module.__name__, limit_deep = 2)
+    rdir.rdir(obj_path_name, limit_deep = 2)
     
     
 > Recursively show docs and structure of any object in the give module.
