@@ -14,7 +14,7 @@ FILE = 3
 RETURN = 4
 
 
-def rdir(name=None, limit_deep=2, print_mode=TERM):
+def rdir(name=None, limit_deep=2, mode=TERM):
     """Recursively show docs and structure of any object in the give module.
 
     This method will ignore protected or private members which start with "_".
@@ -22,7 +22,7 @@ def rdir(name=None, limit_deep=2, print_mode=TERM):
     Args:
         name: string type, full name invocation like "pyquery.PyQuery.eq" or module "pyquery"
         limit_deep: int type, search deep limit, default is 2. -1 for unlimited.
-        print_mode:
+        mode:
                 TERM: it'll print out to your terminal with color;
                 FILE: it'll print out to a file without color;
                 JAVADOC: it'll generate a Javadoc-style webpages;
@@ -38,16 +38,16 @@ def rdir(name=None, limit_deep=2, print_mode=TERM):
     handler = RDirHandler()
     obj_name, parents = handler.parse_obj_name(name)
 
-    if print_mode == TERM:
+    if mode == TERM:
         handler.recursive_dir_print(0, obj_name, parents, limit_deep)
-    elif print_mode == RETURN:
+    elif mode == RETURN:
         return handler.recursive_dir_return(0, obj_name, parents, limit_deep)
-    elif print_mode == FILE:
+    elif mode == FILE:
         fp = open(name + ".rdir", "w")
         handler.recursive_dir_file(0, obj_name, parents, limit_deep, fp)
         fp.close()
-    elif print_mode == JAVADOC:
+    elif mode == JAVADOC:
         pass
-    elif print_mode == TREE:
+    elif mode == TREE:
         pass
 
