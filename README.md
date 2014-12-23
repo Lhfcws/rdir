@@ -1,5 +1,7 @@
 ## rdir
 
+Pypi page: [https://pypi.python.org/pypi/rdir](https://pypi.python.org/pypi/rdir)
+
 Recursively look up python module and documents.
 
 You can install it in `pip` / `easy_install` now
