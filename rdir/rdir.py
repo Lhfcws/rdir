@@ -10,6 +10,7 @@ from core.rdir_core import RDirHandler
 TERM = 0
 JAVADOC = 1
 TREE = 2
+FILE = 3
 RETURN = 4
 
 
@@ -22,7 +23,8 @@ def rdir(name=None, limit_deep=2, print_mode=TERM):
         name: string type, full name invocation like "pyquery.PyQuery.eq" or module "pyquery"
         limit_deep: int type, search deep limit, default is 2. -1 for unlimited.
         print_mode:
-                TERM: it'll print out to your terminal;
+                TERM: it'll print out to your terminal with color;
+                FILE: it'll print out to a file without color;
                 JAVADOC: it'll generate a Javadoc-style webpages;
                 TREE: it'll generate a single webpage with tree structure to show the module;
                 RETURN: it'll return an internal class RDirNode (not suggested).
@@ -40,6 +42,10 @@ def rdir(name=None, limit_deep=2, print_mode=TERM):
         handler.recursive_dir_print(0, obj_name, parents, limit_deep)
     elif print_mode == RETURN:
         return handler.recursive_dir_return(0, obj_name, parents, limit_deep)
+    elif print_mode == FILE:
+        fp = open(name + ".rdir", "w")
+        handler.recursive_dir_file(0, obj_name, parents, limit_deep, fp)
+        fp.close()
     elif print_mode == JAVADOC:
         pass
     elif print_mode == TREE:
