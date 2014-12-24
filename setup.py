@@ -6,7 +6,7 @@ from setuptools import setup
 
 setup(
       name="rdir",
-      version="0.30-alpha",
+      version="0.30",
       description="Recursively show docs and structure of any object in the give module.",
       author="Lhfcws Wu",
       author_email="lhfcws@gmail.com",
@@ -14,5 +14,6 @@ setup(
       license="MIT",
       packages= ["rdir"],
       scripts=["rdir/rdir.py"],
-      requires=['colorama']
+      install_requires=['colorama'],
+      keywords="dir doc"
 )

@@ -75,6 +75,11 @@ class RDirHandler(object):
     def _get_type(self, name):
         return " (%s)" % (str(eval("type(%s)" % name, self.context.modules)))
 
+    def parse_obj_name(self, name):
+        names = name.split(".")
+        self.context.import_module(names[0])
+        return names[-1], names[:-1]
+
     def import_module(self, mod_name):
         self.context.import_module(mod_name)
 
@@ -104,6 +109,33 @@ class RDirHandler(object):
         children = self._get_children(full_name)
         for child in children:
             self.recursive_dir_print(deep + 1, child, p, limit_deep)
+
+    def recursive_dir_file(self, deep, obj_name, parents, limit_deep, fp):
+        """ Print the results to a local file.
+        Separate two recursive methods to reduce the performance cost
+        :param deep: int current deep
+        :param obj_name: str param name of the object
+        :param parents: list the parent chain in order
+        :param limit_deep: int limit deep
+        :param fp: file handler
+        """
+        line_prefix = self._line_prefix(deep) + " "
+        blank_prefix = self._blank_prefix(deep) + " "
+        p = copy.deepcopy(parents)
+        p.append(obj_name)
+
+        full_name = self._get_full_name(p)
+
+        output = line_prefix + obj_name + self._get_type(full_name) + \
+                 " :\n" + blank_prefix + self._get_doc(full_name, blank_prefix)
+        fp.write(output + "\n")
+
+        if limit_deep != -1 and deep == limit_deep:
+            return
+
+        children = self._get_children(full_name)
+        for child in children:
+            self.recursive_dir_file(deep + 1, child, p, limit_deep, fp)
 
     def recursive_dir_return(self, deep, obj_name, parents, limit_deep):
         """ Return the RDireNode object.

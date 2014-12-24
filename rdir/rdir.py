@@ -4,28 +4,27 @@
 """
 __author__ = 'lhfcws'
 
-import os
 from core.rdir_core import RDirHandler
 
 # Constants
 TERM = 0
 JAVADOC = 1
 TREE = 2
+FILE = 3
 RETURN = 4
 
-def rdir(module, obj_full_name=None, limit_deep=2, print_mode=TERM):
+
+def rdir(name=None, limit_deep=2, mode=TERM):
     """Recursively show docs and structure of any object in the give module.
 
     This method will ignore protected or private members which start with "_".
 
     Args:
-        module: string type, module.__name__ like "sys" or "pyquery"
-                or now you can pass the module directly.
-        obj_full_name: None if you want to see the whole module,
-                or string type, full name invocation like "pyquery.PyQuery.eq"
+        name: string type, full name invocation like "pyquery.PyQuery.eq" or module "pyquery"
         limit_deep: int type, search deep limit, default is 2. -1 for unlimited.
-        print_mode:
-                TERM: it'll print out to your terminal;
+        mode:
+                TERM: it'll print out to your terminal with color;
+                FILE: it'll print out to a file without color;
                 JAVADOC: it'll generate a Javadoc-style webpages;
                 TREE: it'll generate a single webpage with tree structure to show the module;
                 RETURN: it'll return an internal class RDirNode (not suggested).
@@ -33,15 +32,11 @@ def rdir(module, obj_full_name=None, limit_deep=2, print_mode=TERM):
         RETURN mode: Return a root node of RDirNode.
         Others: nothing return.
     """
-    assert module is not None and module is not False
-    assert obj_full_name is None or isinstance(obj_full_name, type(""))
-    print "[rdir] Analyzing module: " + module
-
-    mod_name = module
-    if isinstance(module, type(os)):
-        mod_name = module.__name__
+    assert name is not None and name is not False
+    print "[rdir] Analyzing python object: " + name
 
     handler = RDirHandler()
+<<<<<<< HEAD
     handler.import_module(mod_name)
 
     name = mod_name
@@ -55,7 +50,20 @@ def rdir(module, obj_full_name=None, limit_deep=2, print_mode=TERM):
     elif print_mode == RETURN:
         return handler.recursive_dir_return(0, name, parents, limit_deep)
     elif print_mode == JAVADOC:
+=======
+    obj_name, parents = handler.parse_obj_name(name)
+
+    if mode == TERM:
+        handler.recursive_dir_print(0, obj_name, parents, limit_deep)
+    elif mode == RETURN:
+        return handler.recursive_dir_return(0, obj_name, parents, limit_deep)
+    elif mode == FILE:
+        fp = open(name + ".rdir", "w")
+        handler.recursive_dir_file(0, obj_name, parents, limit_deep, fp)
+        fp.close()
+    elif mode == JAVADOC:
+>>>>>>> 3ee7355d87f0db6eadb6d47b31d847c5c822d424
         pass
-    elif print_mode == TREE:
+    elif mode == TREE:
         pass
 
