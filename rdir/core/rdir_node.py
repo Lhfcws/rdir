@@ -37,7 +37,7 @@ class RDirNode(object):
         """ List the keys of self.children
         :return: list [sub-object's name]
         """
-        return self.children.keys
+        return self.children.keys()
 
     def get_children(self, key):
         """ Get a child node by a given key
