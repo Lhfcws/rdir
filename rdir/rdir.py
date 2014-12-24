@@ -36,21 +36,6 @@ def rdir(name=None, limit_deep=2, mode=TERM):
     print "[rdir] Analyzing python object: " + name
 
     handler = RDirHandler()
-<<<<<<< HEAD
-    handler.import_module(mod_name)
-
-    name = mod_name
-    parents = []
-    if obj_full_name is not None:
-        name = obj_full_name
-        parents = handler
-
-    if print_mode == TERM:
-        handler.recursive_dir_print(0, name, parents, limit_deep)
-    elif print_mode == RETURN:
-        return handler.recursive_dir_return(0, name, parents, limit_deep)
-    elif print_mode == JAVADOC:
-=======
     obj_name, parents = handler.parse_obj_name(name)
 
     if mode == TERM:
@@ -62,7 +47,6 @@ def rdir(name=None, limit_deep=2, mode=TERM):
         handler.recursive_dir_file(0, obj_name, parents, limit_deep, fp)
         fp.close()
     elif mode == JAVADOC:
->>>>>>> 3ee7355d87f0db6eadb6d47b31d847c5c822d424
         pass
     elif mode == TREE:
         pass
