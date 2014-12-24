@@ -18,12 +18,15 @@ class HTMLGenerator:
             self.template = PyQuery(f.read().decode('utf-8'))
         with open(os.path.join(os.path.dirname(__file__), 'template', 'tree_node_template.html')) as f:
             self.node_template = PyQuery(f.read().decode('utf-8'))
+        print(self.node_template.html())
 
     def generate_tree_structure_HTML(self, rdir_node):
         self.template('title').html(rdir_node.name)
         for key in rdir_node.list_children():
             self._add_node_recursively(rdir_node.get_children(key), 0)
-        print(self.template.html())
+        os.system(r'touch %s' % os.path.join(os.path.dirname(__file__), 'generatedHTML', rdir_node.name + '.html'))
+        with open(os.path.join(os.path.dirname(__file__), 'generatedHTML', rdir_node.name + '.html'), 'w') as f:
+            f.write(self.template.html())
 
     def _add_node_recursively(self, rdir_node, depth):
         self._add_node_to_HTML(rdir_node.name, rdir_node.doc, rdir_node.type[9 : -3], depth)
