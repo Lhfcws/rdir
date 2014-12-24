@@ -12,6 +12,8 @@ import os
 from pyquery import PyQuery
 
 class HTMLGenerator:
+    """HTML Generator
+    """
 
     def __init__(self):
         with open(os.path.join(os.path.dirname(__file__), 'template', 'tree_template.html')) as f:
@@ -21,6 +23,8 @@ class HTMLGenerator:
         print(self.node_template.html())
 
     def generate_tree_structure_HTML(self, rdir_node):
+        """Generate a html file with tree structure
+        """
         self.template('title').html(rdir_node.name)
         for key in rdir_node.list_children():
             self._add_node_recursively(rdir_node.get_children(key), 0)
