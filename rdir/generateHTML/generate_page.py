@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 # coding=utf-8
-
-#	> File Name: generate_page.py
-#	> Author: LY
-#	> Mail: ly.franky@gmail.com
-#	> Created Time: Sunday, December 14, 2014 AM09:40:42 CST
-
 __author__ = 'laiy'
 
 import os
@@ -21,15 +15,14 @@ class HTMLGenerator:
 
     def __init__(self):
         with open(os.path.join(os.path.dirname(__file__), 'template', 'tree_template.html')) as f:
-            self.template = PyQuery(f.read().decode('utf-8'))
+            self.template = PyQuery(f.read(), parser='html')
 
     def generate_tree_structure_HTML(self, root_node):
         """Generate a html file with tree structure.
         :param root_node: RDirNode root of the module
         """
         with open(os.path.join(os.path.dirname(__file__), 'template', 'tree_node_template.html')) as f:
-            self.node_template = PyQuery(f.read().decode('utf-8'))
-        print(self.node_template.html())
+            self.node_template = PyQuery(f.read(), parser='html')
         self.template('title').html(root_node.name)
         for key in root_node.list_children():
             self._add_node_recursively(root_node.get_children(key), 0)
@@ -57,6 +50,6 @@ class HTMLGenerator:
         node('.interval').css('margin-left', str(depth * 50) + 'px')
         node('.node_fullname').html(fullname)
         node('.node_type').html(obj_type)
-        node('.node_doc').html(doc.replace(' ', '&nbsp;').replace('\n', '<br/>'))
-        self.template('body').append(node.html())
+        node('.node_doc').html(doc.replace(' ', '&nbsp;').replace('\n', '<br/>') + '<br/>')
+        self.template('#wrapper').append(node.html())
 
