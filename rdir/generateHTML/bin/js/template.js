@@ -1,6 +1,4 @@
 (function() {
-  $(function() {
-    return alert('test');
-  });
+  $(function() {});
 
 }).call(this);

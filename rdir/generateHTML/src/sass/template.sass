@@ -1,22 +1,39 @@
+@mixin box_shadow($blur1: 1px, $blur2: 2px, $blur3: 5px, $color: #FFF)
+  -moz-box-shadow: 0 0 $blur1 #FFF, 0 0 $blur2 #FFF, 0 0 $blur3 #FFF
+  -webkit-box-shadow: 0 0 $blur1 #FFF, 0 0 $blur2 #FFF, 0 0 $blur3 #FFF
+  box-shadow: 0 0 $blur1 #FFF, 0 0 $blur2 #FFF, 0 0 $blur3 #FFF
+
+@mixin text_shadow($color)
+  -moz-text-shadow: 0 0 1px $color, 0 0 2px $color
+  -webkit-text-shadow: 0 0 1px $color, 0 0 2px $color
+  text-shadow: 0 0 1px $color, 0 0 2px $color
+  
+
 body
-  background: #002B36
-  color: #37B383
-  div.interval
-    height: 30px
-    width: 0
-    border-left: 1px groove white
-    box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 5px #FFF
-  div.tree_node
-    div.node_info
-      div.node_fullname
-        color: white
-      div.node_type
-        color: yellow
-    div.node_doc
-      display: inline-block
-      padding: 10px
-      padding-right: 50px
-      border: 1px solid #37B383
-      box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 5px #FFF
-      
-      
+  background: #0C2229
+  div#wrapper
+    color: #6AE2BE
+    div.interval
+      height: 30px
+      width: 0
+      border-left: 1px groove white
+      @include box_shadow
+    div.tree_node
+      div.node_info
+        font-size: 17px
+        font-family: sans-serif
+        div.node_fullname
+          color: #EEE
+          @include text_shadow(#EEE)
+        div.node_type
+          color: #6F2A2A 
+          @include text_shadow(#6F2A2A)
+      div.node_doc
+        font-family: serif
+        display: inline-block
+        padding: 10px
+        padding-right: 50px
+        border: 1px solid #37B383
+        @include box_shadow(1px, 5px, 10px, #EEE)
+        margin-top: 5px
+        
