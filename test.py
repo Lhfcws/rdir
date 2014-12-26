@@ -9,4 +9,5 @@ __author__ = 'lhfcws'
 #rdir.rdir(name="urllib", limit_deep=1)
 #rdir.rdir("urllib.urlopen")
 #rdir.rdir("urllib.urlopen", limit_deep=1)
-rdir.rdir("urllib.urlopen", limit_deep=2, mode=2)
+# rdir.rdir("urllib.urlopen", limit_deep=2, mode=rdir.TREE, output="/Users/lhfcws/tree.html")
+rdir.rdir("urllib", limit_deep=2, mode=rdir.TREE, output="/Users/lhfcws/tree.html")

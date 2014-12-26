@@ -26,8 +26,11 @@ class HTMLGenerator(object):
         :param output: Output html file
         """
 
-        self.template('h1').html(root_node.name)
+        self.template('#header_name').html(root_node.name)
+        self.template('#header_type').html(" &lt;%s&gt;" % root_node.type[7:-2])
+        self.template('#header_doc').html(root_node.doc)
         self.template('title').html(root_node.name)
+
         for key in root_node.list_children():
             self._add_node_recursively(root_node.get_children(key), 0)
 
@@ -39,7 +42,7 @@ class HTMLGenerator(object):
         :param rdir_node: RDirNode node to be added
         :param depth: int current recursive depth
         """
-        self._add_node_to_HTML(rdir_node.name, rdir_node.doc, rdir_node.type[9 : -3], depth)
+        self._add_node_to_HTML(rdir_node.name, rdir_node.doc, rdir_node.type[7:-2], depth)
         for key in rdir_node.list_children():
             self._add_node_recursively(rdir_node.get_children(key), depth + 1)
 
@@ -54,10 +57,11 @@ class HTMLGenerator(object):
         node('.tree_node').css('margin-left', str(depth * 50) + 'px')
         node('.interval').css('margin-left', str(depth * 50) + 'px')
         node('.node_fullname').html(fullname)
-        node('.node_type').html("\tType&lt;%s&gt;" % obj_type)
+        node('.node_type').html("&nbsp;&nbsp;Type&lt;%s&gt;" % obj_type)
 
         if doc:
-            node('.node_doc').html(doc.replace('\t', '&nbsp;' * 4).replace(' ', '&nbsp;').replace('\n', '<br/>') + '<br/>')
+            node('.node_doc').html(
+                doc.replace('\t', '&nbsp;' * 4).replace(' ', '&nbsp;').replace('\n', '<br/>') + '<br/>')
         else:
             node.remove('.node_doc')
 

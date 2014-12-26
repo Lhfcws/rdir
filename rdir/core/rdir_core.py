@@ -27,6 +27,15 @@ class RDirHandler(object):
     """
 
     def __init__(self):
+        self.builtin_types = [
+            type(str()), type(test),
+            type(RDirHandler.__init__),
+            type(list()), type({}), type(set()),
+            type({}.viewkeys), type(()), type(1),
+            type(0.1), type(complex()), type(True),
+            type(1L), type(object), type(None)
+        ]
+        self.builtin_types = [str(tp) for tp in self.builtin_types]
         self.context = ModuleSpace()
 
     @staticmethod
@@ -59,6 +68,9 @@ class RDirHandler(object):
         """
         return ".".join(paths)
 
+    def _is_builtin_type(self, typ):
+        return self.builtin_types.count(typ) > 0
+
     def _get_doc(self, name, prefix):
         doc = eval(name + ".__doc__", self.context.modules)
         if doc is None or type(doc) != type(str()):
@@ -73,7 +85,7 @@ class RDirHandler(object):
         return res
 
     def _get_type(self, name):
-        return " (%s)" % (str(eval("type(%s)" % name, self.context.modules)))
+        return (str(eval("type(%s)" % name, self.context.modules)))
 
     def parse_obj_name(self, name):
         names = name.split(".")
@@ -97,11 +109,15 @@ class RDirHandler(object):
         p.append(obj_name)
 
         full_name = self._get_full_name(p)
+        typ = self._get_type(full_name)
 
         output = line_prefix + self._prompt(Fore.CYAN, obj_name) + \
-                 self._prompt(Fore.BLUE, self._get_type(full_name)) + \
-                 " :\n" + blank_prefix + self._get_doc(full_name, blank_prefix)
+                 self._prompt(Fore.BLUE, " (%s)" % typ) + " :\n" + \
+                 blank_prefix + self._get_doc(full_name, blank_prefix)
         print output
+
+        if self._is_builtin_type(typ):
+            return
 
         if limit_deep != -1 and deep == limit_deep:
             return
@@ -125,10 +141,14 @@ class RDirHandler(object):
         p.append(obj_name)
 
         full_name = self._get_full_name(p)
+        typ = self._get_type(full_name)
 
-        output = line_prefix + obj_name + self._get_type(full_name) + \
-                 " :\n" + blank_prefix + self._get_doc(full_name, blank_prefix)
+        output = line_prefix + obj_name + " (%s)" % typ + " :\n" + blank_prefix + \
+                 self._get_doc(full_name, blank_prefix)
         fp.write(output + "\n")
+
+        if self._is_builtin_type(typ):
+            return
 
         if limit_deep != -1 and deep == limit_deep:
             return
@@ -155,6 +175,10 @@ class RDirHandler(object):
 
         children_nodes = {}
         continues = True
+
+        if self._is_builtin_type(typ):
+            continues = False
+
         if limit_deep != -1 and deep == limit_deep:
             continues = False
 
@@ -164,3 +188,7 @@ class RDirHandler(object):
                 children_nodes[child] = self.recursive_dir_return(deep + 1, child, p, limit_deep)
 
         return RDirNode(full_name, doc, typ, children_nodes)
+
+
+def test():
+    pass
