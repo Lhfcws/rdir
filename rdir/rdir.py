@@ -49,7 +49,7 @@ def rdir(name=None, limit_deep=2, mode=TERM):
         handler.recursive_dir_file(0, obj_name, parents, limit_deep, fp)
         fp.close()
     elif mode == JAVADOC:
-        generator.generate_tree_structure_HTML(handler.recursive_dir_return(0, obj_name, parents, limit_deep))
-    elif mode == TREE:
         pass
+    elif mode == TREE:
+        generator.generate_tree_structure_HTML(handler.recursive_dir_return(0, obj_name, parents, limit_deep))
 
