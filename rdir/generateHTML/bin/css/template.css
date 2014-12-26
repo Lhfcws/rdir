@@ -3,9 +3,9 @@ body {
   body div#wrapper {
     color: #6AE2BE; }
     body div#wrapper div.interval {
-      height: 30px;
       width: 0;
-      border-left: 1px groove white;
+      height: 31px;
+      border-left: 1px solid white;
       -moz-box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 5px #FFF;
       -webkit-box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 5px #FFF;
       box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 5px #FFF; }
@@ -14,23 +14,23 @@ body {
       font-family: sans-serif; }
       body div#wrapper div.tree_node div.node_info div.node_fullname {
         color: #EEE;
-        -moz-text-shadow: 0 0 1px #EEE, 0 0 2px #EEE;
-        -webkit-text-shadow: 0 0 1px #EEE, 0 0 2px #EEE;
-        text-shadow: 0 0 1px #EEE, 0 0 2px #EEE; }
+        -moz-text-shadow: 0 0 1px #EEE;
+        -webkit-text-shadow: 0 0 1px #EEE;
+        text-shadow: 0 0 1px #EEE; }
       body div#wrapper div.tree_node div.node_info div.node_type {
         color: #6F2A2A;
-        -moz-text-shadow: 0 0 1px #6F2A2A, 0 0 2px #6F2A2A;
-        -webkit-text-shadow: 0 0 1px #6F2A2A, 0 0 2px #6F2A2A;
-        text-shadow: 0 0 1px #6F2A2A, 0 0 2px #6F2A2A; }
+        -moz-text-shadow: 0 0 1px #6F2A2A;
+        -webkit-text-shadow: 0 0 1px #6F2A2A;
+        text-shadow: 0 0 1px #6F2A2A; }
     body div#wrapper div.tree_node div.node_doc {
-      font-family: serif;
       display: inline-block;
+      margin-top: 5px;
       padding: 10px;
       padding-right: 50px;
       border: 1px solid #37B383;
-      -moz-box-shadow: 0 0 1px #FFF, 0 0 5px #FFF, 0 0 10px #FFF;
-      -webkit-box-shadow: 0 0 1px #FFF, 0 0 5px #FFF, 0 0 10px #FFF;
-      box-shadow: 0 0 1px #FFF, 0 0 5px #FFF, 0 0 10px #FFF;
-      margin-top: 5px; }
+      font-family: serif;
+      -moz-box-shadow: 0 0 1px #FFF, 0 0 3px #FFF, 0 0 6px #FFF;
+      -webkit-box-shadow: 0 0 1px #FFF, 0 0 3px #FFF, 0 0 6px #FFF;
+      box-shadow: 0 0 1px #FFF, 0 0 3px #FFF, 0 0 6px #FFF; }
 
 /*# sourceMappingURL=template.css.map */

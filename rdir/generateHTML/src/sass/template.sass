@@ -4,18 +4,18 @@
   box-shadow: 0 0 $blur1 #FFF, 0 0 $blur2 #FFF, 0 0 $blur3 #FFF
 
 @mixin text_shadow($color)
-  -moz-text-shadow: 0 0 1px $color, 0 0 2px $color
-  -webkit-text-shadow: 0 0 1px $color, 0 0 2px $color
-  text-shadow: 0 0 1px $color, 0 0 2px $color
+  -moz-text-shadow: 0 0 1px $color
+  -webkit-text-shadow: 0 0 1px $color
+  text-shadow: 0 0 1px $color
   
 body
   background: #0C2229
   div#wrapper
     color: #6AE2BE
     div.interval
-      height: 30px
       width: 0
-      border-left: 1px groove white
+      height: 31px
+      border-left: 1px solid white
       @include box_shadow
     div.tree_node
       div.node_info
@@ -28,10 +28,10 @@ body
           color: #6F2A2A 
           @include text_shadow(#6F2A2A)
       div.node_doc
-        font-family: serif
         display: inline-block
+        margin-top: 5px
         padding: 10px
         padding-right: 50px
         border: 1px solid #37B383
-        @include box_shadow(1px, 5px, 10px, #EEE)
-        margin-top: 5px
+        font-family: serif
+        @include box_shadow(1px, 3px, 6px, #EEE)

@@ -14,6 +14,6 @@ setup(
       license="MIT",
       packages= ["rdir"],
       scripts=["rdir/rdir.py"],
-      install_requires=['colorama'],
+      install_requires=['colorama', 'pyquery'],
       keywords="dir doc"
 )
