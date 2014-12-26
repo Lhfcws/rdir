@@ -55,4 +55,3 @@ class HTMLGenerator:
         else:
             node.remove('.node_doc')
         self.template('#wrapper').append(node.html())
-
