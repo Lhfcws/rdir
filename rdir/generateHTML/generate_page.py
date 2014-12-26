@@ -26,7 +26,7 @@ class HTMLGenerator(object):
         :param output: Output html file
         """
 
-        self.template('#header_text').html(root_node.name)
+        self.template('h1').html(root_node.name)
         self.template('title').html(root_node.name)
         for key in root_node.list_children():
             self._add_node_recursively(root_node.get_children(key), 0)
