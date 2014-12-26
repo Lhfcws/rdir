@@ -1,0 +1,42 @@
+@mixin text_shadow($color, $v_shadow: 0)
+  -moz-text-shadow: 0 $v_shadow 1px $color
+  -webkit-text-shadow: 0 $v_shadow 1px $color
+  text-shadow: 0 $v_shadow 1px $color
+  
+body
+  margin: 0
+  background: #EEE
+  div#header
+    width: 100%
+    margin-top: 40px
+    margin-bottom: 10px
+    padding: 10px
+    background-color: #BED4EB
+    h1
+      margin: 0
+      font-size: 36px
+      @include text_shadow(#FFF, 1px)
+  div#wrapper
+    margin-left: 5px
+    color: #333
+    font-family: sans-serif
+    div.interval
+      width: 0
+      height: 31px
+      border-left: 1px solid #222
+    div.tree_node
+      div.node_info
+        font-size: 19px
+        div.node_fullname
+          color: #992233
+          @include text_shadow(#998833)
+        div.node_type
+          color: #BB8899
+          @include text_shadow(#DDD)
+      div.node_doc
+        font-size: 18px
+        display: inline-block
+        margin-top: 5px
+        padding: 10px
+        padding-right: 50px
+        border: 1px solid #BBB
