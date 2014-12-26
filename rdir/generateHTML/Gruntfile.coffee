@@ -37,3 +37,4 @@ module.exports = (grunt)->
     grunt.loadNpmTasks 'grunt-contrib-sass'
 
     grunt.registerTask 'default', 'watch'
+
