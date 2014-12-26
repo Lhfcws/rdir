@@ -5,6 +5,7 @@
 __author__ = 'lhfcws'
 
 from core.rdir_core import RDirHandler
+from generateHTML.generate_page import HTMLGenerator
 
 # Constants
 TERM = 0
@@ -36,6 +37,7 @@ def rdir(name=None, limit_deep=2, mode=TERM):
     print "[rdir] Analyzing python object: " + name
 
     handler = RDirHandler()
+    generator = HTMLGenerator()
     obj_name, parents = handler.parse_obj_name(name)
 
     if mode == TERM:
@@ -49,5 +51,5 @@ def rdir(name=None, limit_deep=2, mode=TERM):
     elif mode == JAVADOC:
         pass
     elif mode == TREE:
-        pass
+        generator.generate_tree_structure_HTML(handler.recursive_dir_return(0, obj_name, parents, limit_deep))
 
