@@ -1,7 +1,8 @@
 body {
-  background: #0C2229; }
+  background: #05151B; }
   body div#wrapper {
-    color: #6AE2BE; }
+    color: #6AE2BE;
+    font-family: sans-serif; }
     body div#wrapper div.interval {
       width: 0;
       height: 31px;
@@ -10,8 +11,7 @@ body {
       -webkit-box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 5px #FFF;
       box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 5px #FFF; }
     body div#wrapper div.tree_node div.node_info {
-      font-size: 19px;
-      font-family: sans-serif; }
+      font-size: 19px; }
       body div#wrapper div.tree_node div.node_info div.node_fullname {
         color: #EEE;
         -moz-text-shadow: 0 0 1px #EEE;
@@ -29,7 +29,6 @@ body {
       padding: 10px;
       padding-right: 50px;
       border: 1px solid #37B383;
-      font-family: serif;
       -moz-box-shadow: 0 0 1px #FFF, 0 0 3px #FFF, 0 0 6px #FFF;
       -webkit-box-shadow: 0 0 1px #FFF, 0 0 3px #FFF, 0 0 6px #FFF;
       box-shadow: 0 0 1px #FFF, 0 0 3px #FFF, 0 0 6px #FFF; }
