@@ -14,6 +14,9 @@ TREE = 2
 FILE = 3
 RETURN = 4
 
+SUFFIX_RDIR = ".rdir"
+SUFFIX_HTML = ".html"
+
 
 def rdir(name=None, limit_deep=2, mode=TERM, output=None):
     """Recursively show docs and structure of any object in the give module.
@@ -35,8 +38,19 @@ def rdir(name=None, limit_deep=2, mode=TERM, output=None):
         RETURN mode: Return a root node of RDirNode.
         Others: nothing return.
     """
+
     assert name is not None and name is not False
     print "[rdir] Analyzing python object: " + name
+
+    def parse_output_2_html(_output, _name):
+        if _output is None:
+            return _name + SUFFIX_HTML
+        elif not _output.endswith(SUFFIX_HTML):
+            if _output.endswith("/"):
+                _output += _name
+            _output += SUFFIX_HTML
+            return _output
+
 
     handler = RDirHandler()
     generator = HTMLGenerator()
@@ -48,18 +62,16 @@ def rdir(name=None, limit_deep=2, mode=TERM, output=None):
         return handler.recursive_dir_return(0, obj_name, parents, limit_deep)
     elif mode == FILE:
         if output is None:
-            output = name + ".rdir"
+            output = name + SUFFIX_RDIR
         fp = open(output, "w")
         handler.recursive_dir_file(0, obj_name, parents, limit_deep, fp)
         fp.close()
     elif mode == JAVADOC:
-        if output is None:
-            output = name + ".html"
+        output = parse_output_2_html(output, name)
     elif mode == TREE:
-        if output is None:
-            output = name + ".html"
+        output = parse_output_2_html(output, name)
         root = handler.recursive_dir_return(0, obj_name, parents, limit_deep)
         generator.generate_tree_structure_HTML(root, output)
     else:
-        print "Please input a valid mode."
+        print "Please input a valid mode.\n" + __doc__
 
