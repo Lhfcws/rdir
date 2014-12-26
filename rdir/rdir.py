@@ -15,7 +15,7 @@ FILE = 3
 RETURN = 4
 
 
-def rdir(name=None, limit_deep=2, mode=TERM):
+def rdir(name=None, limit_deep=2, mode=TERM, output=None):
     """Recursively show docs and structure of any object in the give module.
 
     This method will ignore protected or private members which start with "_".
@@ -29,6 +29,8 @@ def rdir(name=None, limit_deep=2, mode=TERM):
                 JAVADOC: it'll generate a Javadoc-style webpages;
                 TREE: it'll generate a single webpage with tree structure to show the module;
                 RETURN: it'll return an internal class RDirNode (not suggested).
+        output: The output file path. Only works in mode FILE, TREE, JAVADOC.
+                Default: current directory: '{$name}.rdir'
     Returns:
         RETURN mode: Return a root node of RDirNode.
         Others: nothing return.
@@ -45,11 +47,19 @@ def rdir(name=None, limit_deep=2, mode=TERM):
     elif mode == RETURN:
         return handler.recursive_dir_return(0, obj_name, parents, limit_deep)
     elif mode == FILE:
-        fp = open(name + ".rdir", "w")
+        if output is None:
+            output = name + ".rdir"
+        fp = open(output, "w")
         handler.recursive_dir_file(0, obj_name, parents, limit_deep, fp)
         fp.close()
     elif mode == JAVADOC:
-        pass
+        if output is None:
+            output = name + ".html"
     elif mode == TREE:
-        generator.generate_tree_structure_HTML(handler.recursive_dir_return(0, obj_name, parents, limit_deep))
+        if output is None:
+            output = name + ".html"
+        root = handler.recursive_dir_return(0, obj_name, parents, limit_deep)
+        generator.generate_tree_structure_HTML(root, output)
+    else:
+        print "Please input a valid mode."
 
