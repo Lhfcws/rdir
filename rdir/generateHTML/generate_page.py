@@ -54,7 +54,7 @@ class HTMLGenerator(object):
         node('.tree_node').css('margin-left', str(depth * 50) + 'px')
         node('.interval').css('margin-left', str(depth * 50) + 'px')
         node('.node_fullname').html(fullname)
-        node('.node_type').html("\tType:" + obj_type)
+        node('.node_type').html("\tType<%s>" % obj_type)
         if doc:
             node('.node_doc').html(doc.replace(' ', '&nbsp;').replace('\n', '<br/>') + '<br/>')
         else:
