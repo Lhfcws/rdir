@@ -37,6 +37,8 @@ Refer to `test.py` for example.
                 JAVADOC: it'll generate a Javadoc-style webpages;
                 TREE: it'll generate a single webpage with tree structure to show the module;
                 RETURN: it'll return an internal class RDirNode (not suggested).
+        output: The output file path. Only works in mode FILE, TREE, JAVADOC.
+                Default: current directory: '{$name}.rdir'
     Returns:
         RETURN mode: Return a root node of RDirNode.
         Others: nothing return.
