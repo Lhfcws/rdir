@@ -51,6 +51,8 @@ def rdir(name=None, limit_deep=2, mode=TERM, output=None):
             _output += SUFFIX_HTML
             return _output
 
+        return _output
+
 
     handler = RDirHandler()
     generator = HTMLGenerator()

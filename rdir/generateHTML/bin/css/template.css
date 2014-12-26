@@ -1,36 +1,45 @@
 body {
-  background: #05151B; }
+  margin: 0;
+  background: #EEE; }
+  body div#header {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #BED4EB; }
+    body div#header h1 {
+      margin: 0;
+      font-size: 36px;
+      -moz-text-shadow: 0 1px 1px #FFF;
+      -webkit-text-shadow: 0 1px 1px #FFF;
+      text-shadow: 0 1px 1px #FFF; }
   body div#wrapper {
-    color: #6AE2BE;
+    margin-left: 5px;
+    margin-bottom: 100px;
+    color: #333;
     font-family: sans-serif; }
     body div#wrapper div.interval {
       width: 0;
       height: 31px;
-      border-left: 1px solid white;
-      -moz-box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 5px #FFF;
-      -webkit-box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 5px #FFF;
-      box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 5px #FFF; }
+      border-left: 1px solid #222; }
     body div#wrapper div.tree_node div.node_info {
       font-size: 19px; }
       body div#wrapper div.tree_node div.node_info div.node_fullname {
-        color: #EEE;
-        -moz-text-shadow: 0 0 1px #EEE;
-        -webkit-text-shadow: 0 0 1px #EEE;
-        text-shadow: 0 0 1px #EEE; }
+        color: #992233;
+        -moz-text-shadow: 0 0 1px #998833;
+        -webkit-text-shadow: 0 0 1px #998833;
+        text-shadow: 0 0 1px #998833; }
       body div#wrapper div.tree_node div.node_info div.node_type {
-        color: #6F2A2A;
-        -moz-text-shadow: 0 0 1px #6F2A2A;
-        -webkit-text-shadow: 0 0 1px #6F2A2A;
-        text-shadow: 0 0 1px #6F2A2A; }
+        color: #BB8899;
+        -moz-text-shadow: 0 0 1px #DDD;
+        -webkit-text-shadow: 0 0 1px #DDD;
+        text-shadow: 0 0 1px #DDD; }
     body div#wrapper div.tree_node div.node_doc {
       font-size: 18px;
       display: inline-block;
       margin-top: 5px;
       padding: 10px;
       padding-right: 50px;
-      border: 1px solid #37B383;
-      -moz-box-shadow: 0 0 1px #FFF, 0 0 3px #FFF, 0 0 6px #FFF;
-      -webkit-box-shadow: 0 0 1px #FFF, 0 0 3px #FFF, 0 0 6px #FFF;
-      box-shadow: 0 0 1px #FFF, 0 0 3px #FFF, 0 0 6px #FFF; }
+      border: 1px solid #BBB; }
 
 /*# sourceMappingURL=template.css.map */

@@ -1,23 +1,30 @@
-@mixin box_shadow($blur1: 1px, $blur2: 2px, $blur3: 5px, $color: #FFF)
-  -moz-box-shadow: 0 0 $blur1 #FFF, 0 0 $blur2 #FFF, 0 0 $blur3 #FFF
-  -webkit-box-shadow: 0 0 $blur1 #FFF, 0 0 $blur2 #FFF, 0 0 $blur3 #FFF
-  box-shadow: 0 0 $blur1 #FFF, 0 0 $blur2 #FFF, 0 0 $blur3 #FFF
-
-@mixin text_shadow($color)
-  -moz-text-shadow: 0 0 1px $color
-  -webkit-text-shadow: 0 0 1px $color
-  text-shadow: 0 0 1px $color
+@mixin text_shadow($color, $v_shadow: 0)
+  -moz-text-shadow: 0 $v_shadow 1px $color
+  -webkit-text-shadow: 0 $v_shadow 1px $color
+  text-shadow: 0 $v_shadow 1px $color
   
 body
-  background: #EEEEEE
+  margin: 0
+  background: #EEE
+  div#header
+    width: 100%
+    margin-top: 40px
+    margin-bottom: 10px
+    padding: 10px
+    background-color: #BED4EB
+    h1
+      margin: 0
+      font-size: 36px
+      @include text_shadow(#FFF, 1px)
   div#wrapper
-    color: #333333
+    margin-left: 5px
+    margin-bottom: 100px
+    color: #333
     font-family: sans-serif
     div.interval
       width: 0
       height: 31px
-      border-left: 1px solid #222222
-      @include box_shadow
+      border-left: 1px solid #222
     div.tree_node
       div.node_info
         font-size: 19px
@@ -26,12 +33,11 @@ body
           @include text_shadow(#998833)
         div.node_type
           color: #BB8899
-          @include text_shadow(#DDDDDD)
+          @include text_shadow(#DDD)
       div.node_doc
         font-size: 18px
         display: inline-block
         margin-top: 5px
         padding: 10px
         padding-right: 50px
-        border: 1px solid #BBBBBB
-        @include box_shadow(1px, 3px, 6px, #666)
+        border: 1px solid #BBB
