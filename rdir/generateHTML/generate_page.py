@@ -31,9 +31,6 @@ class HTMLGenerator(object):
         for key in root_node.list_children():
             self._add_node_recursively(root_node.get_children(key), 0)
 
-        # with open(os.path.join(os.path.dirname(__file__), 'generatedHTML', root_node.name + '.html'), 'w') as f:
-
-        # use user defined output path
         with open(output, 'w') as f:
             f.write(self.template.html())
 
@@ -57,7 +54,7 @@ class HTMLGenerator(object):
         node('.tree_node').css('margin-left', str(depth * 50) + 'px')
         node('.interval').css('margin-left', str(depth * 50) + 'px')
         node('.node_fullname').html(fullname)
-        node('.node_type').html("\tType<%s>" % obj_type)
+        node('.node_type').html("\tType&lt;%s&gt;" % obj_type)
 
         if doc:
             node('.node_doc').html(doc.replace('\t', '&nbsp;' * 4).replace(' ', '&nbsp;').replace('\n', '<br/>') + '<br/>')
