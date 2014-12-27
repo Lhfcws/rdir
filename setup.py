@@ -6,8 +6,8 @@ from setuptools import setup
 
 setup(
       name="rdir",
-      version="0.30",
-      description="Recursively show docs and structure of any object in the give module.",
+      version="0.40",
+      description="More powerful recursive dir. Support HTML pretty view in tree structure.",
       author="Lhfcws Wu",
       author_email="lhfcws@gmail.com",
       url="http://www.github.com/Lhfcws/rdir",

@@ -1,13 +1,13 @@
 ## rdir
-Recursively look up python module and documents.
+More powerful recursive dir. Support HTML pretty view in tree structure.
 
 Pypi page: [https://pypi.python.org/pypi/rdir](https://pypi.python.org/pypi/rdir)
 
-**0.30 Change Logs:**
+**0.40 Change Logs:**
 
-1. Update rdir api, it is stable now.
-2. Support objects not only modules but also objects in the module
-3. Add param mode to return results in different ways.
+1. User defined output path.
+2. Tree pretty view in HTML supported!
+3. Ignore the builtin types.
 
 
 **Installation:**
