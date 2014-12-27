@@ -2,7 +2,12 @@
   -moz-text-shadow: 0 $v_shadow 1px $color
   -webkit-text-shadow: 0 $v_shadow 1px $color
   text-shadow: 0 $v_shadow 1px $color
-  
+
+@mixin box_shadow($color, $v_shadow: 0)
+  -moz-box-shadow: 0 $v_shadow 2px $color
+  -webkit-box-shadow: 0 $v_shadow 2px $color
+  box-shadow: 0 $v_shadow 2px $color
+
 body
   margin: 0
   background: #EEE
@@ -52,3 +57,26 @@ body
     padding: 10px
     padding-right: 50px
     border: 1px solid #BBB
+
+  .fake_btn
+    cursor: pointer
+    width: 33px
+    height: 32px
+    position: fixed
+    right: 25px
+    color: #999
+    font-size: 2em
+    background-color: #BBB
+    opacity: 0.5
+    a
+      text-decoration: none
+      color: inherit
+  .fake_btn:hover
+    opacity: 0.7
+  .fake_btn:active
+    @include box-shadow(#333)
+  div#to_btm
+    bottom: 5px
+  div#to_top
+    bottom: 40px
+

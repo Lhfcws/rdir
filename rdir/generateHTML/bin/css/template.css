@@ -52,5 +52,28 @@ body {
     padding: 10px;
     padding-right: 50px;
     border: 1px solid #BBB; }
+  body .fake_btn {
+    cursor: pointer;
+    width: 33px;
+    height: 32px;
+    position: fixed;
+    right: 25px;
+    color: #999;
+    font-size: 2em;
+    background-color: #BBB;
+    opacity: 0.5; }
+    body .fake_btn a {
+      text-decoration: none;
+      color: inherit; }
+  body .fake_btn:hover {
+    opacity: 0.7; }
+  body .fake_btn:active {
+    -moz-box-shadow: 0 0 2px #333;
+    -webkit-box-shadow: 0 0 2px #333;
+    box-shadow: 0 0 2px #333; }
+  body div#to_btm {
+    bottom: 5px; }
+  body div#to_top {
+    bottom: 40px; }
 
 /*# sourceMappingURL=template.css.map */

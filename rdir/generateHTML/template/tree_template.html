@@ -4,95 +4,101 @@
     <meta charset="UTF-8">
     <title></title>
     <style type="text/css">
-        body {
-            margin: 0;
-            background: #EEE;
-        }
+body {
+  margin: 0;
+  background: #EEE; }
+  body div#bottom {
+    background-color: #BED4EB;
+    margin: 0;
+    width: 100%;
+    height: 60px; }
+  body div#header {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #BED4EB; }
+    body div#header h1 {
+      margin: 0;
+      font-size: 36px;
+      -moz-text-shadow: 0 1px 1px #FFF;
+      -webkit-text-shadow: 0 1px 1px #FFF;
+      text-shadow: 0 1px 1px #FFF; }
+      body div#header h1 span#header_type {
+        color: #888888; }
+    body div#header div#header_doc {
+      margin-top: 5px;
+      line-height: 23px;
+      background-color: aliceblue; }
+  body div#wrapper {
+    margin-left: 5px;
+    margin-bottom: 100px;
+    color: #333;
+    font-family: sans-serif; }
+    body div#wrapper div.interval {
+      width: 0;
+      height: 31px;
+      border-left: 1px solid #222; }
+    body div#wrapper div.tree_node div.node_info {
+      font-size: 19px; }
+      body div#wrapper div.tree_node div.node_info div.node_fullname {
+        color: #992233;
+        -moz-text-shadow: 0 0 1px #998833;
+        -webkit-text-shadow: 0 0 1px #998833;
+        text-shadow: 0 0 1px #998833; }
+      body div#wrapper div.tree_node div.node_info div.node_type {
+        color: #BB8899;
+        -moz-text-shadow: 0 0 1px #DDD;
+        -webkit-text-shadow: 0 0 1px #DDD;
+        text-shadow: 0 0 1px #DDD; }
+  body div.node_doc {
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 5px;
+    padding: 10px;
+    padding-right: 50px;
+    border: 1px solid #BBB; }
+  body .fake_btn {
+    cursor: pointer;
+    width: 33px;
+    height: 32px;
+    position: fixed;
+    right: 25px;
+    color: #999;
+    font-size: 2em;
+    background-color: #BBB;
+    opacity: 0.5; }
+    body .fake_btn a {
+      text-decoration: none;
+      color: inherit; }
+  body .fake_btn:hover {
+    opacity: 0.7; }
+  body .fake_btn:active {
+    -moz-box-shadow: 0 0 2px #333;
+    -webkit-box-shadow: 0 0 2px #333;
+    box-shadow: 0 0 2px #333; }
+  body div#to_btm {
+    bottom: 5px; }
+  body div#to_top {
+    bottom: 40px; }
 
-        body div#bottom {
-            background-color: #BED4EB;
-            margin: 0;
-            width: 100%;
-            height: 60px;
-        }
-
-        body div#header {
-            width: 100%;
-            margin-top: 40px;
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #BED4EB;
-        }
-
-        body div#header h1 {
-            margin: 0;
-            font-size: 36px;
-            -moz-text-shadow: 0 1px 1px #FFF;
-            -webkit-text-shadow: 0 1px 1px #FFF;
-            text-shadow: 0 1px 1px #FFF;
-        }
-
-        body div#header h1 span#header_type {
-            color: #888888;
-        }
-
-        body div#header div#header_doc {
-            margin-top: 5px;
-            line-height: 23px;
-            background-color: aliceblue;
-        }
-
-        body div#wrapper {
-            margin-left: 5px;
-            margin-bottom: 100px;
-            color: #333;
-            font-family: sans-serif;
-        }
-
-        body div#wrapper div.interval {
-            width: 0;
-            height: 31px;
-            border-left: 1px solid #222;
-        }
-
-        body div#wrapper div.tree_node div.node_info {
-            font-size: 19px;
-        }
-
-        body div#wrapper div.tree_node div.node_info div.node_fullname {
-            color: #992233;
-            -moz-text-shadow: 0 0 1px #998833;
-            -webkit-text-shadow: 0 0 1px #998833;
-            text-shadow: 0 0 1px #998833;
-        }
-
-        body div#wrapper div.tree_node div.node_info div.node_type {
-            color: #BB8899;
-            -moz-text-shadow: 0 0 1px #DDD;
-            -webkit-text-shadow: 0 0 1px #DDD;
-            text-shadow: 0 0 1px #DDD;
-        }
-
-        body div.node_doc {
-            font-size: 18px;
-            display: inline-block;
-            margin-top: 5px;
-            padding: 10px;
-            padding-right: 50px;
-            border: 1px solid #BBB;
-        }
-
-        /*# sourceMappingURL=template.css.map */
+/*# sourceMappingURL=template.css.map */
 
     </style>
 </head>
 <body>
+<a name="top"></a>
 <div id="header">
     <h1><span id="header_name"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="header_type"></span></h1>
 
     <div id="header_doc" class="node_doc"></div>
 </div>
+<div id="control_area">
+    <div class="fake_btn" id="to_top"><a href="#top">△</a></div>
+    <div class="fake_btn" id="to_btm"><a href="#btm">▽</a></div>
+</div>
 <div id="wrapper"></div>
 <div id="bottom"></div>
+<a name="btm"></a>
 </body>
 </html>
