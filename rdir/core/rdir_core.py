@@ -33,7 +33,7 @@ class RDirHandler(object):
             type(list()), type({}), type(set()),
             type({}.viewkeys), type(()), type(1),
             type(0.1), type(complex()), type(True),
-            type(1L), type(object), type(None)
+            type(1L), type(None)
         ]
         self.builtin_types = [str(tp) for tp in self.builtin_types]
         self.context = ModuleSpace()

@@ -28,11 +28,20 @@ class HTMLGenerator(object):
 
         self.template('#header_name').html(root_node.name)
         self.template('#header_type').html(" &lt;%s&gt;" % root_node.type[7:-2])
-        self.template('#header_doc').html(root_node.doc)
+        self.template('#header_doc').html(root_node.doc.
+                                          replace('\t', '&nbsp;' * 4).
+                                          replace(' ', '&nbsp;').
+                                          replace('\n', '<br/>') + '<br/>')
         self.template('title').html(root_node.name)
 
         for key in root_node.list_children():
             self._add_node_recursively(root_node.get_children(key), 0)
+
+        if len(root_node.list_children()) == 0:
+            self._add_node_to_HTML("No visible children methods or members.",
+                                   "If you see this, that means this object has nothing else to show.",
+                                   "404",
+                                   0)
 
         with open(output, 'w') as f:
             f.write(self.template.html())
