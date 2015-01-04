@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title></title>
     <style type="text/css">
-body {
+        body {
   margin: 0;
   background: #EEE; }
   body div#bottom {
@@ -81,16 +81,74 @@ body {
     bottom: 5px; }
   body div#to_top {
     bottom: 40px; }
+  body .doc_toggle {
+    color: #eee;
+    background-color: #ababab;
+    font-size: smaller;
+    cursor: pointer;
+    -moz-box-shadow: 0 0 1px #999;
+    -webkit-box-shadow: 0 0 1px #999;
+    box-shadow: 0 0 1px #999; }
+  body .doc_toggle:hover {
+    -moz-box-shadow: 0 0 2px #666;
+    -webkit-box-shadow: 0 0 2px #666;
+    box-shadow: 0 0 2px #666; }
+  body .doc_toggle:active {
+    -moz-box-shadow: 0 0 2px #333;
+    -webkit-box-shadow: 0 0 2px #333;
+    box-shadow: 0 0 2px #333; }
 
 /*# sourceMappingURL=template.css.map */
 
     </style>
+    <script id="jquery" type='text/javascript' src='generateHTML/bin/js/jquery.min.js'></script>
+
+    <script type="text/javascript">
+        var toggleDoc = function (this_dom) {
+            _this = $(this_dom);
+
+            var get_node_doc = function () {
+                return _this.parent().parent().siblings(".node_doc");
+            };
+
+            var node_doc = get_node_doc();
+
+            node_doc.toggle();
+        }
+
+        $(function() {
+            $("#header_doc_toggle").click(function () {
+                $("#header_doc").toggle();
+            });
+
+            $("#show_all_doc").click(function () {
+                $(".node_doc").each(function(_item) {
+                    var _this = $(this);
+                    if (_this.parent().is(":visible"))
+                        _this.show();
+                });
+            });
+
+            $("#hide_all_doc").click(function () {
+                $(".node_doc").each(function() {
+                    $(this).hide();
+                });
+            });
+        });
+    </script>
 </head>
+
 <body>
 <a name="top"></a>
+
 <div id="header">
     <h1><span id="header_name"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="header_type"></span></h1>
-
+    <br />
+    <div>
+        <button id="header_doc_toggle">toggle doc</button>&nbsp;&nbsp;
+        <button id="show_all_doc">show all docs</button>&nbsp;&nbsp;
+        <button id="hide_all_doc">hide all docs</button>&nbsp;&nbsp;
+    </div>
     <div id="header_doc" class="node_doc"></div>
 </div>
 <div id="control_area">

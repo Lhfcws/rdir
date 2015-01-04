@@ -75,5 +75,21 @@ body {
     bottom: 5px; }
   body div#to_top {
     bottom: 40px; }
+  body .doc_toggle {
+    color: #eee;
+    background-color: #ababab;
+    font-size: smaller;
+    cursor: pointer;
+    -moz-box-shadow: 0 0 1px #999;
+    -webkit-box-shadow: 0 0 1px #999;
+    box-shadow: 0 0 1px #999; }
+  body .doc_toggle:hover {
+    -moz-box-shadow: 0 0 2px #666;
+    -webkit-box-shadow: 0 0 2px #666;
+    box-shadow: 0 0 2px #666; }
+  body .doc_toggle:active {
+    -moz-box-shadow: 0 0 2px #333;
+    -webkit-box-shadow: 0 0 2px #333;
+    box-shadow: 0 0 2px #333; }
 
 /*# sourceMappingURL=template.css.map */

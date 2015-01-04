@@ -20,12 +20,17 @@ class HTMLGenerator(object):
         with open(os.path.join(os.path.dirname(__file__), 'template', 'tree_node_template.html')) as f:
             self.node_template = PyQuery(f.read(), parser='html')
 
+    def import_js(self):
+        self.template("#jquery").attr("src", "%s/bin/js/jquery.min.js" % os.path.dirname(__file__))
+        self.template("#jquery").html("var _lxml = 0;")
+
     def generate_tree_structure_HTML(self, root_node, output):
         """Generate a html file with tree structure.
         :param root_node: RDirNode root of the module
         :param output: Output html file
         """
 
+        self.import_js()
         self.template('#header_name').html(root_node.name)
         self.template('#header_type').html(" &lt;%s&gt;" % root_node.type[7:-2])
         self.template('#header_doc').html(root_node.doc.
