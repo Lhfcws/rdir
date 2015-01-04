@@ -34,7 +34,7 @@ Refer to `test.py` for example.
         print_mode:
                 TERM: it'll print out to your terminal with color;
                 FILE: it'll print out to a file without color;
-                JAVADOC: it'll generate a Javadoc-style webpages;
+                # JAVADOC: it'll generate a Javadoc-style webpages;
                 TREE: it'll generate a single webpage with tree structure to show the module;
                 RETURN: it'll return an internal class RDirNode (not suggested).
         output: The output file path. Only works in mode FILE, TREE, JAVADOC.
