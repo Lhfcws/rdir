@@ -15,5 +15,5 @@ setup(
       packages= ["rdir", "rdir/core", "rdir/generateHTML"],
       scripts=["rdir/rdir.py"],
       install_requires=['colorama', 'pyquery'],
-      keywords="dir doc"
+      keywords="dir doc pydoc html"
 )
