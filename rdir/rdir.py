@@ -20,7 +20,7 @@ SUFFIX_RDIR = ".rdir"
 SUFFIX_HTML = ".html"
 
 
-def rdir(name=None, obj=None, limit_deep=2, mode=TERM, output=None):
+def rdir(name=None, limit_deep=2, mode=TERM, output=None):
     """Recursively show docs and structure of any object in the give module.
 
     Strongly suggest you to pass the value by using param name like `rdir(name="urllib")`.
@@ -33,7 +33,6 @@ def rdir(name=None, obj=None, limit_deep=2, mode=TERM, output=None):
 
     Args:
         name:   string type, full name invocation like "pyquery.PyQuery.eq" or module "pyquery"
-        obj:    object type, it'll be auto-analyzed.
         limit_deep: int type, search deep limit, default is 2. -1 for unlimited.
         mode:
                 TERM: it'll print out to your terminal with color;
@@ -49,7 +48,7 @@ def rdir(name=None, obj=None, limit_deep=2, mode=TERM, output=None):
         Others: nothing return.
     """
 
-    assert (name is not None and name is not False) or (obj is not None)
+    assert (name is not None and name is not False) #or (obj is not None)
     # print "[rdir] Analyzing python object: " + name
 
     def parse_output_2_html(_output, _name):
