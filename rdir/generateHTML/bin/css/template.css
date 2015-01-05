@@ -25,6 +25,7 @@ body {
       line-height: 23px;
       background-color: aliceblue; }
   body div#wrapper {
+    min-height: 700px;
     margin-left: 5px;
     margin-bottom: 100px;
     color: #333;
@@ -76,20 +77,22 @@ body {
   body div#to_top {
     bottom: 40px; }
   body .doc_toggle {
-    color: #eee;
-    background-color: #ababab;
     font-size: smaller;
-    cursor: pointer;
     -moz-box-shadow: 0 0 1px #999;
     -webkit-box-shadow: 0 0 1px #999;
     box-shadow: 0 0 1px #999; }
-  body .doc_toggle:hover {
-    -moz-box-shadow: 0 0 2px #666;
-    -webkit-box-shadow: 0 0 2px #666;
-    box-shadow: 0 0 2px #666; }
-  body .doc_toggle:active {
-    -moz-box-shadow: 0 0 2px #333;
-    -webkit-box-shadow: 0 0 2px #333;
-    box-shadow: 0 0 2px #333; }
+  body .button:hover {
+    background-color: #f87b00; }
+  body .button:active {
+    background-color: #BC2A4D; }
+  body .button {
+    background-color: #aab5c3;
+    display: inline;
+    maring: 0 5px 5px 0;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer; }
 
 /*# sourceMappingURL=template.css.map */

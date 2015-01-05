@@ -33,6 +33,7 @@ body
       line-height: 23px
       background-color: aliceblue
   div#wrapper
+    min-height: 700px
     margin-left: 5px
     margin-bottom: 100px
     color: #333
@@ -80,12 +81,21 @@ body
   div#to_top
     bottom: 40px
   .doc_toggle
-    color: #eee
-    background-color: #ababab
     font-size: smaller
-    cursor: pointer
     @include box_shadow(#999, 1px)
-  .doc_toggle:hover
-    @include box_shadow(#666)
-  .doc_toggle:active
-    @include box_shadow(#333)
+  .button:hover
+    background-color: #f87b00
+  .button:active
+    background-color: #BC2A4D
+  .button
+    background-color: #aab5c3
+    display: inline
+    maring: 0 5px 5px 0
+    padding: 0 10px
+    border-radius: 10px
+    color: #ffffff
+    text-decoration: none
+    cursor: pointer
+
+
+
