@@ -21,10 +21,18 @@ class HTMLGenerator(object):
             self.node_template = PyQuery(f.read(), parser='html')
 
     def import_js(self):
-        self.template("#script_jquery").attr("src", "%s/bin/js/jquery.min.js" % os.path.dirname(__file__))
-        self.template("#script_rdir_tree").attr("src", "%s/bin/js/rdir_tree.js" % os.path.dirname(__file__))
-        self.template("#script_jquery").html("var _lxml = 0;")
-        self.template("#script_rdir_tree").html("var _lxml = 0;")
+        js_ids = {
+            # script_id : js_file_name
+            "script_jquery": "jquery.min.js",
+            "script_rdir_tree": "rdir_tree.js"
+        }
+
+        _path = os.path.dirname(__file__)
+
+        for _id in js_ids.iterkeys():
+            self.template(_id).attr("src", "%s/bin/js/%s" % (_path, js_ids[_id]))
+            # In case that lxml change <script></script> to <script/>
+            self.template(_id).html("var _lxml = 0;")
 
     def generate_tree_structure_HTML(self, root_node, output):
         """Generate a html file with tree structure.
@@ -70,7 +78,7 @@ class HTMLGenerator(object):
         :param depth: int current recursive depth
         """
         node = PyQuery(self.node_template.html())
-        node.add_class('tree_node')
+        node.add_class('tree_node')  # pyquery bug, it will ignore the tree_node class
         node('.tree_node').css('margin-left', str(depth * 50) + 'px')
         # node('.interval').css('margin-left', str(depth * 50) + 'px')
         node('.node_fullname').html(fullname)
