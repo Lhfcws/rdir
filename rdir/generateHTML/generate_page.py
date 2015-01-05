@@ -21,8 +21,10 @@ class HTMLGenerator(object):
             self.node_template = PyQuery(f.read(), parser='html')
 
     def import_js(self):
-        self.template("#jquery").attr("src", "%s/bin/js/jquery.min.js" % os.path.dirname(__file__))
-        self.template("#jquery").html("var _lxml = 0;")
+        self.template("#script_jquery").attr("src", "%s/bin/js/jquery.min.js" % os.path.dirname(__file__))
+        self.template("#script_rdir_tree").attr("src", "%s/bin/js/rdir_tree.js" % os.path.dirname(__file__))
+        self.template("#script_jquery").html("var _lxml = 0;")
+        self.template("#script_rdir_tree").html("var _lxml = 0;")
 
     def generate_tree_structure_HTML(self, root_node, output):
         """Generate a html file with tree structure.
@@ -68,8 +70,9 @@ class HTMLGenerator(object):
         :param depth: int current recursive depth
         """
         node = PyQuery(self.node_template.html())
+        node.add_class('tree_node')
         node('.tree_node').css('margin-left', str(depth * 50) + 'px')
-        node('.interval').css('margin-left', str(depth * 50) + 'px')
+        # node('.interval').css('margin-left', str(depth * 50) + 'px')
         node('.node_fullname').html(fullname)
         node('.node_type').html("&nbsp;&nbsp;Type&lt;%s&gt;" % obj_type)
 
@@ -79,5 +82,5 @@ class HTMLGenerator(object):
         else:
             node.remove('.node_doc')
 
-        self.template('#wrapper').append(node.html())
+        self.template('#wrapper').append(node)
 

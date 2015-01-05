@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <style type="text/css">
-        body {
+     body {
   margin: 0;
   background: #EEE; }
   body div#bottom {
@@ -30,28 +30,32 @@
       margin-top: 5px;
       line-height: 23px;
       background-color: aliceblue; }
+  body div.interval {
+    width: 0;
+    height: 31px;
+    border-left: 1px solid #222; }
   body div#wrapper {
     min-height: 700px;
     margin-left: 5px;
     margin-bottom: 100px;
     color: #333;
     font-family: sans-serif; }
-    body div#wrapper div.interval {
-      width: 0;
-      height: 31px;
-      border-left: 1px solid #222; }
-    body div#wrapper div.tree_node div.node_info {
-      font-size: 19px; }
-      body div#wrapper div.tree_node div.node_info div.node_fullname {
-        color: #992233;
-        -moz-text-shadow: 0 0 1px #998833;
-        -webkit-text-shadow: 0 0 1px #998833;
-        text-shadow: 0 0 1px #998833; }
-      body div#wrapper div.tree_node div.node_info div.node_type {
-        color: #BB8899;
-        -moz-text-shadow: 0 0 1px #DDD;
-        -webkit-text-shadow: 0 0 1px #DDD;
-        text-shadow: 0 0 1px #DDD; }
+  body .node_info {
+    font-size: 19px; }
+  body .node_fullname, body .fold_flag {
+    font-family: monospace;
+    color: #992233;
+    -moz-text-shadow: 0 0 1px #998833;
+    -webkit-text-shadow: 0 0 1px #998833;
+    text-shadow: 0 0 1px #998833; }
+  body .fold_flag {
+    cursor: pointer;
+    color: #f87b55; }
+  body .node_type {
+    color: #BB8899;
+    -moz-text-shadow: 0 0 1px #DDD;
+    -webkit-text-shadow: 0 0 1px #DDD;
+    text-shadow: 0 0 1px #DDD; }
   body div.node_doc {
     font-size: 18px;
     display: inline-block;
@@ -106,41 +110,9 @@
 
 
     </style>
-    <script id="jquery" type='text/javascript' src='generateHTML/bin/js/jquery.min.js'></script>
+    <script id="script_jquery" type='text/javascript' src='generateHTML/bin/js/jquery.min.js'></script>
 
-    <script type="text/javascript">
-        var toggleDoc = function (this_dom) {
-            _this = $(this_dom);
-
-            var get_node_doc = function () {
-                return _this.parent().parent().siblings(".node_doc");
-            };
-
-            var node_doc = get_node_doc();
-
-            node_doc.toggle();
-        }
-
-        $(function () {
-            $("#header_doc_toggle").click(function () {
-                $("#header_doc").toggle();
-            });
-
-            $("#show_all_doc").click(function () {
-                $(".node_doc").each(function (_item) {
-                    var _this = $(this);
-                    if (_this.parent().is(":visible"))
-                        _this.show();
-                });
-            });
-
-            $("#hide_all_doc").click(function () {
-                $(".node_doc").each(function () {
-                    $(this).hide();
-                });
-            });
-        });
-    </script>
+    <script id="script_rdir_tree" type='text/javascript' src='generateHTML/bin/js/rdir_tree.js'></script>
 </head>
 
 <body>
@@ -165,9 +137,9 @@
         <div class="fake_btn" id="to_top"><a href="#top">△</a></div>
         <div class="fake_btn" id="to_btm"><a href="#btm">▽</a></div>
     </div>
-    <div id="wrapper"> </div>
+    <div id="wrapper"></div>
 
-    <div id="bottom"> </div>
+    <div id="bottom"></div>
 </div>
 <a name="btm"> </a>
 </body>
