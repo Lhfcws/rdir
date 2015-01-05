@@ -6,7 +6,7 @@ from setuptools import setup
 
 setup(
       name="rdir",
-      version="0.42",
+      version="0.43.dev",
       description="More powerful recursive dir. Support HTML pretty view in tree structure.",
       author="Lhfcws Wu",
       author_email="lhfcws@gmail.com",
