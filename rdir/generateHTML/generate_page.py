@@ -15,6 +15,7 @@ class HTMLGenerator(object):
     """
 
     def __init__(self):
+        self.max_layer = 0
         with open(os.path.join(os.path.dirname(__file__), 'template', 'tree_template.html')) as f:
             self.template = PyQuery(f.read(), parser='html')
         with open(os.path.join(os.path.dirname(__file__), 'template', 'tree_node_template.html')) as f:
@@ -23,8 +24,8 @@ class HTMLGenerator(object):
     def import_js(self):
         js_ids = {
             # script_id : js_file_name
-            "script_jquery": "jquery.min.js",
-            "script_rdir_tree": "rdir_tree.js"
+            "#script_jquery": "jquery.min.js",
+            "#script_rdir_tree": "rdir_tree.js"
         }
 
         _path = os.path.dirname(__file__)
@@ -57,6 +58,11 @@ class HTMLGenerator(object):
                                    "If you see this, that means this object has nothing else to show.",
                                    "404",
                                    0)
+
+        for i in xrange(self.max_layer + 1):
+            self.template("#choose_layer").append(
+                "<option value='%d'>%d</option>" % (i, i)
+            )
 
         with open(output, 'w') as f:
             f.write(self.template.html())
@@ -91,4 +97,5 @@ class HTMLGenerator(object):
             node.remove('.node_doc')
 
         self.template('#wrapper').append(node)
+        self.max_layer = (self.max_layer < depth) and depth or self.max_layer
 

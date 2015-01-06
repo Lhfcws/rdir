@@ -6,6 +6,7 @@ __author__ = 'lhfcws'
 
 from core.rdir_core import RDirHandler
 from generateHTML.generate_page import HTMLGenerator
+import os
 
 # Constants
 WINDOW = 0
@@ -48,10 +49,12 @@ def rdir(name=None, limit_deep=2, mode=TERM, output=None):
         Others: nothing return.
     """
 
+    # Assertions
     assert (name is not None and name is not False) #or (obj is not None)
     # print "[rdir] Analyzing python object: " + name
 
-    def parse_output_2_html(_output, _name):
+    # Internal functions
+    def parse_output_2_html_suffix(_output, _name):
         if _output is None:
             return _name + SUFFIX_HTML
         elif not _output.endswith(SUFFIX_HTML):
@@ -62,11 +65,16 @@ def rdir(name=None, limit_deep=2, mode=TERM, output=None):
 
         return _output
 
-
+    # Init
     handler = RDirHandler()
     generator = HTMLGenerator()
     obj_name, parents = handler.parse_obj_name(name)
 
+    # Identify ~ in path.
+    if output.startswith("~"):
+        output = os.path.expanduser(output)
+
+    # Handle according with mode
     if mode == TERM:
         handler.recursive_dir_print(0, obj_name, parents, limit_deep)
     elif mode == RETURN:
@@ -74,13 +82,20 @@ def rdir(name=None, limit_deep=2, mode=TERM, output=None):
     elif mode == FILE:
         if output is None:
             output = name + SUFFIX_RDIR
+        output = os.path.abspath(output)
+
         fp = open(output, "w")
         handler.recursive_dir_file(0, obj_name, parents, limit_deep, fp)
         fp.close()
     elif mode == JAVADOC:
-        output = parse_output_2_html(output, name)
+        output = parse_output_2_html_suffix(output, name)
+        output = os.path.abspath(output)
+
+        root = handler.recursive_dir_return(0, obj_name, parents, limit_deep)
     elif mode == TREE:
-        output = parse_output_2_html(output, name)
+        output = parse_output_2_html_suffix(output, name)
+        output = os.path.abspath(output)
+
         root = handler.recursive_dir_return(0, obj_name, parents, limit_deep)
         generator.generate_tree_structure_HTML(root, output)
     else:

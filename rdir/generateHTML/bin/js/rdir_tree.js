@@ -5,6 +5,7 @@
 
 /**
  * Hide / show the doc of the node.
+ * It will be invoked by onclick attr in the dom, so I put it in global space.
  * @param this_dom
  */
 var toggleDoc = function (this_dom) {
@@ -36,7 +37,7 @@ $(function () {
         };
 
         /**
-         * Iter all the .tree_node
+         * Iter all the .tree_node to find the children
          */
         $("div.tree_node").each(function (index) {
             if (end) return;
@@ -57,7 +58,51 @@ $(function () {
                 }
             }
         });
+
+        checkFlag();
     };
+
+    /**
+     * Recheck the fold flag
+     */
+    var checkFlag = function () {
+        // true -> +, false -> -
+        var size = $(".tree_node").length;
+        var flags = Array(size);
+        for (var i = 0; i < size; i++) flags[i] = false;
+
+        $(".tree_node").each(function (index) {
+            var _this = $(this);
+            if (!_this.is(":visible")) {
+                if (index > 0)
+                    flags[index - 1] = true;
+            }
+        }).each(function (index) {
+            if (flags[index])
+                $(this).children("div div.node_info").children("div div").children("span.fold_flag").html("+");
+            else
+                $(this).children("div div.node_info").children("div div").children("span.fold_flag").html("-");
+        });
+    };
+
+    /**
+     * Show the nodes with suitable layer preference.
+     */
+    $("#choose_layer").change(function () {
+        var layer = $("#choose_layer").val();
+        if (layer < 0) return;
+        var limit_left = layer * 50;
+
+        $("div.tree_node").each(function (index) {
+            var t = $(this);
+            if ((limit_left >= parseInt(t.css("margin-left"))))
+                t.show();
+            else
+                t.hide();
+        });
+
+        checkFlag();
+    });
 
     /**
      * Hide / show the header_doc
@@ -102,5 +147,7 @@ $(function () {
             toggleChildren(tree_node, true);
             _this.html("-");
         }
+
+        checkFlag();
     });
 });
