@@ -16,6 +16,8 @@ class HTMLGenerator(object):
 
     def __init__(self):
         self.max_layer = 0
+        self.tree_nodes = []
+
         with open(os.path.join(os.path.dirname(__file__), 'template', 'tree_template.html')) as f:
             self.template = PyQuery(f.read(), parser='html')
         with open(os.path.join(os.path.dirname(__file__), 'template', 'tree_node_template.html')) as f:
@@ -29,6 +31,7 @@ class HTMLGenerator(object):
         }
 
         _path = os.path.dirname(__file__)
+        print _path
 
         for _id in js_ids.iterkeys():
             self.template(_id).attr("src", "%s/bin/js/%s" % (_path, js_ids[_id]))
@@ -64,6 +67,8 @@ class HTMLGenerator(object):
                 "<option value='%d'>%d</option>" % (i, i)
             )
 
+        self.template('#wrapper').append("\n".join(self.tree_nodes))
+
         with open(output, 'w') as f:
             f.write(self.template.html())
 
@@ -84,9 +89,7 @@ class HTMLGenerator(object):
         :param depth: int current recursive depth
         """
         node = PyQuery(self.node_template.html())
-        node.add_class('tree_node')  # pyquery bug, it will ignore the tree_node class
         node('.tree_node').css('margin-left', str(depth * 50) + 'px')
-        # node('.interval').css('margin-left', str(depth * 50) + 'px')
         node('.node_fullname').html(fullname)
         node('.node_type').html("&nbsp;&nbsp;Type&lt;%s&gt;" % obj_type)
 
@@ -96,6 +99,7 @@ class HTMLGenerator(object):
         else:
             node.remove('.node_doc')
 
-        self.template('#wrapper').append(node)
+        self.tree_nodes.append("<div class='tree_node'>%s</div>" % node.html())
+        # self.template('#wrapper').append(node)
         self.max_layer = (self.max_layer < depth) and depth or self.max_layer
 
