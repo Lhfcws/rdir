@@ -88,12 +88,14 @@ class HTMLGenerator(object):
         self.template('title').html(root_node.name)
 
         # Recur
-        self.parse_tree_html(root_node)
         if len(root_node.list_children()) == 0:
             self._add_node_to_HTML("No visible children methods or members.",
                                    "If you see this, that means this object has nothing else to show.",
                                    "404",
                                    0)
+        else:
+            self.render_tree_html(root_node)
+
 
         # Render html
         for i in xrange(self.max_layer + 1):
@@ -108,7 +110,10 @@ class HTMLGenerator(object):
             f.write(self.template.html())
 
 
-    def parse_tree_html(self, root_node):
+    def render_tree_html(self, root_node):
+        """ Render the node html. Use multiprocessing to speed up if needed.
+        :param root_node: RDirNode root of the module
+        """
         job_list = self.get_job_list(root_node)
         job_size = len(job_list)
 
