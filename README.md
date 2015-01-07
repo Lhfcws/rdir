@@ -7,9 +7,11 @@ Pypi page: [https://pypi.python.org/pypi/rdir](https://pypi.python.org/pypi/rdir
 
 1. Fix user home path ~ cannot be identied bug.
 2. Tree-view add some hide / show controls to make a pretty user experience.
-
+3. Use multiprocessing to speed up the rendering.
 
 **Installation:**
+
+Required `Python 2.6+`
 
 You can install it in `pip` / `easy_install` now
 

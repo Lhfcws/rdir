@@ -22,7 +22,7 @@ SUFFIX_HTML = ".html"
 
 
 def rdir(name=None, limit_deep=2, mode=TERM, output=None):
-    """Recursively show docs and structure of any object in the give module.
+    """Recursively show docs and structure of a object in the give module.
 
     Strongly suggest you to pass the value by using param name like `rdir(name="urllib")`.
 
