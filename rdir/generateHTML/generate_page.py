@@ -186,7 +186,6 @@ def parse_tree_node_worker(html, jobs):
         else:
             node.remove('.node_doc')
 
-        print node
         return index, str(node)
 
     node_template = PyQuery(html)
