@@ -175,7 +175,7 @@ def parse_tree_node_worker(html, jobs):
         index, rdir_node, depth = args
 
         node = node_template.clone()           # clone will be faster
-        node.add_class('.tree_node')
+        node.add_class('tree_node')
         node('.tree_node').css('margin-left', str(depth * 50) + 'px')
         node('.node_fullname').html(rdir_node.name)
         node('.node_type').html("&nbsp;&nbsp;Type&lt;%s&gt;" % rdir_node.type)
@@ -186,7 +186,8 @@ def parse_tree_node_worker(html, jobs):
         else:
             node.remove('.node_doc')
 
-        return index, "<div class='tree_node'>%s</div>" % node.html()
+        print node
+        return index, str(node)
 
     node_template = PyQuery(html)
 
