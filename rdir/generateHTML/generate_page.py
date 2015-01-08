@@ -77,7 +77,7 @@ class HTMLGenerator(object):
             "#script_rdir_tree": "rdir_tree.js"
         })
         self.template('#header_name').html(root_node.name)
-        self.template('#header_type').html(" &lt;%s&gt;" % root_node.type[7:-2])
+        self.template('#header_type').html(" &lt;%s&gt;" % root_node.type)
 
         header_doc = root_node.doc.replace('\t', '&nbsp;' * 4) \
             .replace(' ', '&nbsp;').replace('\n', '<br/>').strip()
@@ -89,10 +89,11 @@ class HTMLGenerator(object):
 
         # Recur
         if len(root_node.list_children()) == 0:
-            self._add_node_to_HTML("No visible children methods or members.",
-                                   "If you see this, that means this object has nothing else to show.",
-                                   "404",
-                                   0)
+            # self._add_node_to_HTML("No visible children methods or members.",
+            #                        "If you see this, that means this object has nothing else to show.",
+            #                        "404",
+            #                        0)
+            pass
         else:
             self.render_tree_html(root_node)
 
@@ -128,6 +129,9 @@ class HTMLGenerator(object):
         for jobs in jobs_list:
             if len(jobs) > 0:
                 result.append(pool.apply_async(parse_tree_node_worker, (html, jobs)))
+
+        # pool.close()
+        # pool.join()
 
         self.tree_nodes = [None] * job_size
         for res in result:
@@ -174,7 +178,7 @@ def parse_tree_node_worker(html, jobs):
         node.add_class('.tree_node')
         node('.tree_node').css('margin-left', str(depth * 50) + 'px')
         node('.node_fullname').html(rdir_node.name)
-        node('.node_type').html("&nbsp;&nbsp;Type&lt;%s&gt;" % rdir_node.type[7:-2])
+        node('.node_type').html("&nbsp;&nbsp;Type&lt;%s&gt;" % rdir_node.type)
 
         if rdir_node.doc:
             node('.node_doc').html(

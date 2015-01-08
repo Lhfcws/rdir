@@ -6,6 +6,7 @@ __author__ = 'lhfcws'
 import copy
 from colorama.ansi import Style, Fore
 from rdir_node import RDirNode
+import os
 
 # CLASS
 
@@ -35,7 +36,7 @@ class RDirHandler(object):
             type(0.1), type(complex()), type(True),
             type(1L), type(None)
         ]
-        self.builtin_types = [str(tp) for tp in self.builtin_types]
+        self.builtin_types = [str(tp)[7:-2] for tp in self.builtin_types]
         self.context = ModuleSpace()
 
     @staticmethod
@@ -68,8 +69,23 @@ class RDirHandler(object):
         """
         return ".".join(paths)
 
+    def _is_module(self, name):
+        return str(type(os))[7:-2] == self._get_type(name)
+
     def _is_builtin_type(self, typ):
         return self.builtin_types.count(typ) > 0
+
+    def _get_submodules(self, name):
+        if not self._is_module(name):
+            return []
+
+        submodules = []
+        _module_paths = eval("%s.__path__" % name, self.context.modules)
+        for _path in _module_paths:
+            for file in os.listdir(_path):
+                if not file.startswith("_") and file.endswith(".py"):
+                    submodules.append(file.replace(".py", ""))
+        return submodules
 
     def _get_doc(self, name, prefix):
         doc = eval(name + ".__doc__", self.context.modules)
@@ -85,7 +101,7 @@ class RDirHandler(object):
         return res
 
     def _get_type(self, name):
-        return (str(eval("type(%s)" % name, self.context.modules)))
+        return (str(eval("type(%s)" % name, self.context.modules)))[7:-2]
 
     def parse_obj_name(self, name):
         names = name.split(".")

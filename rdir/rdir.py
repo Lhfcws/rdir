@@ -51,7 +51,6 @@ def rdir(name=None, limit_deep=2, mode=TERM, output=None):
 
     # Assertions
     assert (name is not None and name is not False) #or (obj is not None)
-    # print "[rdir] Analyzing python object: " + name
 
     # Internal functions
     def parse_output_2_html_suffix(_output, _name):
@@ -69,10 +68,10 @@ def rdir(name=None, limit_deep=2, mode=TERM, output=None):
     handler = RDirHandler()
     generator = HTMLGenerator()
     obj_name, parents = handler.parse_obj_name(name)
-
     # Identify ~ in path.
     if output.startswith("~"):
         output = os.path.expanduser(output)
+
 
     # Handle according with mode
     if mode == TERM:
