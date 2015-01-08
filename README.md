@@ -3,7 +3,7 @@ More powerful recursive dir. Support HTML pretty view in tree structure.
 
 Pypi page: [https://pypi.python.org/pypi/rdir](https://pypi.python.org/pypi/rdir)
 
-**0.50 Change Logs:**
+**0.43 Change Logs:**
 
 1. Fix user home path ~ cannot be identied bug.
 2. Tree-view add some hide / show controls to make a pretty user experience.
