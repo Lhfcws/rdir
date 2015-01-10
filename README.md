@@ -1,3 +1,5 @@
+# Meet with some problems now, please wait for next release again.
+
 ## rdir
 More powerful recursive dir. Support HTML pretty view in tree structure.
 
