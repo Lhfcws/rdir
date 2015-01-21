@@ -12,7 +12,7 @@ Pypi page: [https://pypi.python.org/pypi/rdir](https://pypi.python.org/pypi/rdir
 
 **Installation:**
 
-Required `Python 2.6+`
+Required `Python 2.x` , Windows untested.
 
 You can install it in `pip` / `easy_install` now
 
